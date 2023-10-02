@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://dccspch08mfqh"]
+
+[ext_resource type="Script" path="res://Scripts/border_detector.gd" id="1_jmf57"]
+[ext_resource type="PackedScene" uid="uid://lc76mpacso37" path="res://interaction/interaction area/interaction_area.tscn" id="2_lvfo8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vtn1r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_87ys0"]
+size = Vector2(13, 11)
+
+[node name="BorderDetector" type="Node2D" groups=["Interactable"]]
+position = Vector2(1, -1)
+script = ExtResource("1_jmf57")
+
+[node name="InteractionArea" parent="." instance=ExtResource("2_lvfo8")]
+action_name = "enter"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("RectangleShape2D_vtn1r")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_87ys0")

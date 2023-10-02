@@ -1,0 +1,182 @@
+[gd_scene load_steps=17 format=3 uid="uid://d2ijsqy6tj1nf"]
+
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_147pu"]
+[ext_resource type="Texture2D" uid="uid://cf2wnmiclnbcj" path="res://assets/sprites/pnj1.png" id="2_nw64c"]
+[ext_resource type="Script" path="res://Scripts/FinalStateMachine.gd" id="3_587ak"]
+[ext_resource type="Script" path="res://Scripts/player_interact_state.gd" id="3_rd6jq"]
+[ext_resource type="Script" path="res://Scripts/player_inventory_state.gd" id="3_str44"]
+[ext_resource type="Script" path="res://Scripts/player_idle_state.gd" id="4_648wv"]
+[ext_resource type="Script" path="res://Scripts/player_moving_state.gd" id="4_damux"]
+[ext_resource type="Script" path="res://Scripts/player_state_manager.gd" id="8_d1alm"]
+
+[sub_resource type="Animation" id="Animation_337n8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_k6ol5"]
+resource_name = "idle"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 2.4, 2.8, 3.2, 3.6, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 0), Vector2i(0, 6), Vector2i(1, 6), Vector2i(0, 6), Vector2i(1, 6), Vector2i(0, 6), Vector2i(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_kbg0i"]
+resource_name = "walk_down"
+length = 0.8
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 0), Vector2i(0, 1), Vector2i(0, 2), Vector2i(0, 3)]
+}
+
+[sub_resource type="Animation" id="Animation_jip0x"]
+resource_name = "walk_left"
+length = 0.8
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(2, 0), Vector2i(2, 1), Vector2i(2, 2), Vector2i(2, 3)]
+}
+
+[sub_resource type="Animation" id="Animation_n4cwn"]
+resource_name = "walk_right"
+length = 0.8
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(3, 0), Vector2i(3, 1), Vector2i(3, 2), Vector2i(3, 3)]
+}
+
+[sub_resource type="Animation" id="Animation_xwoec"]
+resource_name = "walk_up"
+length = 0.8
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(1, 0), Vector2i(1, 1), Vector2i(1, 2), Vector2i(1, 3)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u88gn"]
+_data = {
+"RESET": SubResource("Animation_337n8"),
+"idle": SubResource("Animation_k6ol5"),
+"walk_down": SubResource("Animation_kbg0i"),
+"walk_left": SubResource("Animation_jip0x"),
+"walk_right": SubResource("Animation_n4cwn"),
+"walk_up": SubResource("Animation_xwoec")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_br6y1"]
+size = Vector2(14, 4)
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+z_index = 1
+texture_filter = 1
+position = Vector2(124, 61)
+collision_layer = 2
+script = ExtResource("1_147pu")
+metadata/_edit_group_ = true
+
+[node name="PlayerSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_nw64c")
+offset = Vector2(0, -8)
+hframes = 4
+vframes = 7
+frame = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_u88gn")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_br6y1")
+debug_color = Color(0.372549, 0.541176, 0.780392, 0.419608)
+
+[node name="FinalStateMachine" type="Node" parent="." node_paths=PackedStringArray("state")]
+script = ExtResource("3_587ak")
+state = NodePath("PlayerIdleState")
+
+[node name="PlayerStateManager" type="Node2D" parent="FinalStateMachine"]
+position = Vector2(124, 61)
+script = ExtResource("8_d1alm")
+
+[node name="PlayerMovingState" type="Node" parent="FinalStateMachine" node_paths=PackedStringArray("player", "animator")]
+script = ExtResource("4_damux")
+player = NodePath("../..")
+animator = NodePath("../../AnimationPlayer")
+speed = 100
+
+[node name="PlayerIdleState" type="Node" parent="FinalStateMachine" node_paths=PackedStringArray("player", "animator")]
+script = ExtResource("4_648wv")
+player = NodePath("../..")
+animator = NodePath("../../AnimationPlayer")
+speed = 100
+
+[node name="PlayerInteractState" type="Node" parent="FinalStateMachine" node_paths=PackedStringArray("player", "animator")]
+script = ExtResource("3_rd6jq")
+player = NodePath("../..")
+animator = NodePath("../../AnimationPlayer")
+
+[node name="PlayerInventoryState" type="Node" parent="FinalStateMachine" node_paths=PackedStringArray("player", "animator")]
+script = ExtResource("3_str44")
+player = NodePath("../..")
+animator = NodePath("../../AnimationPlayer")
