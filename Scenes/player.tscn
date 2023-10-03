@@ -162,13 +162,13 @@ state = NodePath("PlayerIdleState")
 script = ExtResource("4_damux")
 player = NodePath("../../..")
 animator = NodePath("../../../AnimationPlayer")
-speed = 100
+speed = 200
 
 [node name="PlayerIdleState" type="Node" parent="PlayerStateManager/FinalStateMachine" node_paths=PackedStringArray("player", "animator")]
 script = ExtResource("4_648wv")
 player = NodePath("../../..")
 animator = NodePath("../../../AnimationPlayer")
-speed = 100
+speed = 200
 
 [node name="PlayerInteractState" type="Node" parent="PlayerStateManager/FinalStateMachine" node_paths=PackedStringArray("player", "animator")]
 script = ExtResource("3_rd6jq")

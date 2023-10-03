@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dccspch08mfqh"]
+[gd_scene load_steps=5 format=3 uid="uid://khj0qv7eybrc"]
 
 [ext_resource type="Script" path="res://Scripts/border_detector.gd" id="1_jmf57"]
 [ext_resource type="PackedScene" uid="uid://lc76mpacso37" path="res://interaction/interaction area/interaction_area.tscn" id="2_lvfo8"]
@@ -19,7 +19,7 @@ action_name = "enter"
 shape = SubResource("RectangleShape2D_vtn1r")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-collision_mask = 3
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(0.5, 0.5)
