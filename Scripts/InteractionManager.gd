@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var player = get_tree().get_first_node_in_group("player")
-
+@onready var inventory: Inventory = preload("res://Inventory/playerInventory.tres")
 @onready var label = $Label
 
 const BASE_TEXT = "[E] to "
@@ -41,6 +41,13 @@ func _input(event):
 			is_interacting = true
 			can_interact = false
 			label.hide()
-			await active_areas[0].interact.call(player)
-			can_interact = true
-			is_interacting = false
+			if active_areas[0].get_parent() is Collectable:
+				await active_areas[0].interact.call(inventory)
+				can_interact = true
+				is_interacting = false
+			else:
+				await active_areas[0].interact.call(player)
+				can_interact = true
+				is_interacting = false
+		
+		

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://qnvix6ibdco4"]
+[gd_scene load_steps=23 format=3 uid="uid://qnvix6ibdco4"]
 
 [ext_resource type="PackedScene" uid="uid://d2ijsqy6tj1nf" path="res://Scenes/player.tscn" id="1_m6fr8"]
 [ext_resource type="Texture2D" uid="uid://c1e2lg02cdein" path="res://assets/tilesets/TilesetFloor.png" id="2_j0qsy"]
@@ -7,10 +7,12 @@
 [ext_resource type="Texture2D" uid="uid://3gfpkrfvdoon" path="res://assets/tilesets/animatedFlowers.png" id="4_pn61x"]
 [ext_resource type="Texture2D" uid="uid://j4byxpdfy4kk" path="res://assets/tilesets/Roguelike Modern City pack/Spritesheet/roguelikeCity_magenta.png" id="4_ywd1w"]
 [ext_resource type="Script" path="res://Scripts/FollowCamera.gd" id="5_ccnnh"]
+[ext_resource type="PackedScene" uid="uid://bbux5qregbemn" path="res://Scenes/key.tscn" id="5_jk1ga"]
 [ext_resource type="PackedScene" uid="uid://bvmb6hivxowpg" path="res://Scenes/bank.tscn" id="6_sxekd"]
+[ext_resource type="PackedScene" uid="uid://b6jofrf84i5ip" path="res://Scenes/coin.tscn" id="6_uv2gu"]
 [ext_resource type="Texture2D" uid="uid://cdj5jey6lwuxh" path="res://assets/tilesets/TX Tileset Stone Ground.png" id="7_hs4qc"]
 [ext_resource type="PackedScene" uid="uid://3d8clqrivgka" path="res://Scenes/pnj.tscn" id="10_vs5nv"]
-[ext_resource type="PackedScene" path="res://Scenes/inventory_gui.tscn" id="11_kgh2o"]
+[ext_resource type="PackedScene" uid="uid://vn40ibgyufs5" path="res://Scenes/inventory_gui.tscn" id="11_kgh2o"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ejplu"]
 texture = ExtResource("2_j0qsy")
@@ -2541,6 +2543,11 @@ texture = ExtResource("4_pn61x")
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
 
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_ixt8i"]
+resource_name = "Collectables"
+scenes/1/scene = ExtResource("5_jk1ga")
+scenes/2/scene = ExtResource("6_uv2gu")
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_26j75"]
 texture = ExtResource("4_ywd1w")
 0:0/0 = 0
@@ -4895,6 +4902,7 @@ sources/1 = SubResource("TileSetAtlasSource_sp8sg")
 sources/2 = SubResource("TileSetAtlasSource_1kd58")
 sources/4 = SubResource("TileSetAtlasSource_26j75")
 sources/7 = SubResource("TileSetAtlasSource_1n38f")
+sources/3 = SubResource("TileSetScenesCollectionSource_ixt8i")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v4vk3"]
 texture = ExtResource("4_ywd1w")
@@ -8061,6 +8069,13 @@ layer_3/y_sort_enabled = false
 layer_3/y_sort_origin = 0
 layer_3/z_index = 0
 layer_3/tile_data = PackedInt32Array(131072, 458753, 12, 196608, 458753, 12, 262144, 458753, 12, 327680, 458753, 12, 393216, 458753, 12, 458752, 458753, 12, 524288, 458753, 12, 589824, 458753, 12, 655360, 458753, 12, 720896, 458753, 12, 786432, 458753, 12, 851968, 458753, 12, 917504, 458753, 12, 983040, 458753, 12, 1048576, 458753, 12, 1114112, 458753, 12, 1179648, 458753, 12, 1245184, 458753, 12, 1310720, 458753, 12, 1376256, 458753, 12, 1441792, 458753, 12, 1507328, 458753, 12, 1572864, 458753, 12, 1638400, 458753, 12, 1703936, 458753, 12, 1769472, 458753, 12, 1835008, 458753, 12, 1900544, 458753, 12, 1966080, 458753, 12, 1966081, 458753, 12, 1966082, 458753, 12, 1966083, 458753, 12, 1966084, 458753, 12, 1966085, 458753, 12, 1966086, 458753, 12, 1966087, 458753, 12, 1966088, 458753, 12, 1966089, 458753, 12, 1966090, 458753, 12, 1966091, 458753, 12, 1966092, 458753, 12, 1966097, 458753, 12, 1966098, 458753, 12, 1966099, 458753, 12, 1966100, 458753, 12, 1966101, 458753, 12, 1966102, 458753, 12, 1966103, 458753, 12, 1966104, 458753, 12, 1966105, 458753, 12, 1966106, 458753, 12, 1966107, 458753, 12, 1966108, 458753, 12, 1966109, 458753, 12, 1966110, 458753, 12, 30, 458753, 12, 65566, 458753, 12, 131102, 458753, 12, 196638, 458753, 12, 262174, 458753, 12, 327710, 458753, 12, 393246, 458753, 12, 458782, 458753, 12, 524318, 458753, 12, 589854, 458753, 12, 655390, 458753, 12, 720926, 458753, 12, 786462, 458753, 12, 851998, 458753, 12, 917534, 458753, 12, 1179678, 458753, 12, 1245214, 458753, 12, 1310750, 458753, 12, 1376286, 458753, 12, 1441822, 458753, 12, 1507358, 458753, 12, 1572894, 458753, 12, 1638430, 458753, 12, 1703966, 458753, 12, 1769502, 458753, 12, 1835038, 458753, 12, 1900574, 458753, 12, 29, 458753, 12, 28, 458753, 12, 27, 458753, 12, 26, 458753, 12, 25, 458753, 12, 24, 458753, 12, 23, 458753, 12, 22, 458753, 12, 21, 458753, 12, 20, 458753, 12, 19, 458753, 12, 18, 458753, 12, 17, 458753, 12, 16, 458753, 12, 15, 458753, 12, 14, 458753, 12, 13, 458753, 12, 12, 458753, 12, 11, 458753, 12, 10, 458753, 12, 9, 458753, 12, 8, 458753, 12, 7, 458753, 12, 6, 458753, 12, 5, 458753, 12, 4, 458753, 12, 3, 458753, 12, 2, 458753, 12, 1, 458753, 12, 0, 458753, 12, 65536, 458753, 12, 1966096, 458753, 12)
+layer_4/name = "Collectables"
+layer_4/enabled = true
+layer_4/modulate = Color(1, 1, 1, 1)
+layer_4/y_sort_enabled = false
+layer_4/y_sort_origin = 0
+layer_4/z_index = 0
+layer_4/tile_data = PackedInt32Array(393249, 3, 65536, 1703948, 3, 65536, 1441796, 3, 131072, 1835011, 3, 131072)
 
 [node name="BorderNO-N" parent="TileMapNordOuest" node_paths=PackedStringArray("destinationTileMap", "spawn") instance=ExtResource("4_38qu4")]
 position = Vector2(483, 264)
@@ -8323,4 +8338,5 @@ grow_vertical = 0
 [connection signal="borderReached" from="BankInterior/ExitBank" to="Player/FollowCamera" method="_on_border_reached"]
 
 [editable path="Bank"]
+[editable path="TileMapNordOuest/BorderNO-N"]
 [editable path="BankInterior/ExitBank"]

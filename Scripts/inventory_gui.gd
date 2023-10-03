@@ -5,9 +5,18 @@ var isOpen: bool = false
 signal inventory_open
 signal inventory_close
 
-func _ready():
-	close()
+@onready var inventory: Inventory = preload("res://Inventory/playerInventory.tres")
+@onready var slots: Array = $NinePatchRect/GridContainer.get_children()
 
+func update():
+	for i in range(min(inventory.items.size(), slots.size())):
+		slots[i].update(inventory.items[i])
+		
+func _ready():
+	inventory.inventory_updated.connect(update)
+	update()
+	close()
+	
 func open():
 	visible = true
 	isOpen = true

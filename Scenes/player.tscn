@@ -1,6 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://d2ijsqy6tj1nf"]
+[gd_scene load_steps=19 format=3 uid="uid://d2ijsqy6tj1nf"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_147pu"]
+[ext_resource type="Resource" uid="uid://cnfg23ijcqglm" path="res://Inventory/playerInventory.tres" id="2_5gvf2"]
 [ext_resource type="Texture2D" uid="uid://cf2wnmiclnbcj" path="res://assets/sprites/pnj1.png" id="2_nw64c"]
 [ext_resource type="Script" path="res://Scripts/FinalStateMachine.gd" id="3_587ak"]
 [ext_resource type="Script" path="res://Scripts/player_interact_state.gd" id="3_rd6jq"]
@@ -124,7 +125,10 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_br6y1"]
-size = Vector2(14, 4)
+size = Vector2(14, 3)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1pcsl"]
+size = Vector2(14, 13)
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 z_index = 1
@@ -132,6 +136,7 @@ texture_filter = 1
 position = Vector2(124, 61)
 collision_layer = 2
 script = ExtResource("1_147pu")
+inventory = ExtResource("2_5gvf2")
 metadata/_edit_group_ = true
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
@@ -147,7 +152,7 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -2)
+position = Vector2(0, -1.5)
 shape = SubResource("RectangleShape2D_br6y1")
 debug_color = Color(0.372549, 0.541176, 0.780392, 0.419608)
 
@@ -179,3 +184,10 @@ animator = NodePath("../../../AnimationPlayer")
 script = ExtResource("3_str44")
 player = NodePath("../../..")
 animator = NodePath("../../../AnimationPlayer")
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(0, -6.5)
+shape = SubResource("RectangleShape2D_1pcsl")

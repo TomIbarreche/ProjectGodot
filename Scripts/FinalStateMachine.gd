@@ -15,4 +15,4 @@ func change_state(newState: State):
 	state = newState
 
 func _process(delta):
-	print(state)
+	pass

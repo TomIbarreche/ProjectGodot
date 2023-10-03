@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://b6jofrf84i5ip"]
+
+[ext_resource type="PackedScene" uid="uid://fjgwxkpcterq" path="res://Scenes/collectable.tscn" id="1_l317b"]
+[ext_resource type="Texture2D" uid="uid://brdiseki8ke35" path="res://assets/sprites/GoldCoin.png" id="2_0xs6r"]
+[ext_resource type="Resource" uid="uid://ci2b363qrwcxc" path="res://Inventory/coin.tres" id="2_muobb"]
+
+[node name="Collectable" instance=ExtResource("1_l317b")]
+itemRes = ExtResource("2_muobb")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_0xs6r")

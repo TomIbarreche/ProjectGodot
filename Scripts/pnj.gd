@@ -5,7 +5,7 @@ class_name PNJ
 @export var limit = 0.5
 @export var endPoint: Marker2D
 
-@onready var animator = $AnimatedSprite2D
+@onready var animator = $AnimationPlayer
 
 var startPosition
 var endPosition

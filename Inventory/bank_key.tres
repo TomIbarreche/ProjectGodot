@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://dtd5fnm4jcjdk"]
+
+[ext_resource type="Script" path="res://Scripts/inventory_item.gd" id="1_kdo14"]
+[ext_resource type="Texture2D" uid="uid://cq0wmvh1csy4h" path="res://assets/sprites/SilverKey.png" id="2_61ax1"]
+
+[resource]
+script = ExtResource("1_kdo14")
+name = "BankKey"
+textureInInventory = ExtResource("2_61ax1")
