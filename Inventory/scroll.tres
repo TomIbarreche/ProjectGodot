@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://br1rrvn4mouvn"]
+
+[ext_resource type="Script" path="res://Scripts/inventory_item.gd" id="1_6p7qg"]
+[ext_resource type="Texture2D" uid="uid://dpt42r5xty0h5" path="res://assets/sprites/ScrollEmpty.png" id="2_susu2"]
+
+[resource]
+script = ExtResource("1_6p7qg")
+name = "Scroll"
+textureInInventory = ExtResource("2_susu2")

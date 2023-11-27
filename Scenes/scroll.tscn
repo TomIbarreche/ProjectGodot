@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://jxgb0y8ndlko"]
+
+[ext_resource type="PackedScene" uid="uid://fjgwxkpcterq" path="res://Scenes/collectable.tscn" id="1_28khc"]
+[ext_resource type="Resource" uid="uid://br1rrvn4mouvn" path="res://Inventory/scroll.tres" id="2_dwbe1"]
+[ext_resource type="Texture2D" uid="uid://dpt42r5xty0h5" path="res://assets/sprites/ScrollEmpty.png" id="3_odf6j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pfpnm"]
+size = Vector2(16, 17)
+
+[node name="Scroll" instance=ExtResource("1_28khc")]
+itemRes = ExtResource("2_dwbe1")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("3_odf6j")
+
+[node name="CollisionShape2D" parent="InteractionArea" index="0"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_pfpnm")

@@ -1,21 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://vn40ibgyufs5"]
+[gd_scene load_steps=5 format=3 uid="uid://vn40ibgyufs5"]
 
 [ext_resource type="Script" path="res://Scripts/inventory_gui.gd" id="1_bhnn1"]
 [ext_resource type="Texture2D" uid="uid://bpueoawslgabg" path="res://assets/sprites/InventoryRect.png" id="1_mrboi"]
 [ext_resource type="PackedScene" uid="uid://dwmgtataa3ur4" path="res://Scenes/slot_gui.tscn" id="2_tonhu"]
+[ext_resource type="FontFile" uid="uid://d3mofnhujt1w4" path="res://assets/NormalFont.ttf" id="5_ur25s"]
 
 [node name="InventoryGUI" type="Control"]
 custom_minimum_size = Vector2(128, 80)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 127.0
-offset_bottom = 81.0
+offset_right = 128.0
+offset_bottom = 94.0
+focus_mode = 1
 script = ExtResource("1_bhnn1")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 layout_mode = 0
 offset_right = 127.0
-offset_bottom = 81.0
+offset_bottom = 94.0
 texture = ExtResource("1_mrboi")
 patch_margin_left = 6
 patch_margin_top = 6
@@ -39,45 +41,154 @@ columns = 5
 
 [node name="Slot" parent="NinePatchRect/GridContainer" instance=ExtResource("2_tonhu")]
 layout_mode = 2
+focus_neighbor_left = NodePath("../Slot15")
+focus_neighbor_top = NodePath("../Slot11")
+focus_neighbor_right = NodePath("../Slot2")
+focus_neighbor_bottom = NodePath("../Slot6")
+focus_mode = 2
 
 [node name="Slot2" parent="NinePatchRect/GridContainer" instance=ExtResource("2_tonhu")]
 layout_mode = 2
+focus_neighbor_left = NodePath("../Slot")
+focus_neighbor_top = NodePath("../Slot12")
+focus_neighbor_right = NodePath("../Slot3")
+focus_neighbor_bottom = NodePath("../Slot7")
+focus_mode = 2
 
 [node name="Slot3" parent="NinePatchRect/GridContainer" instance=ExtResource("2_tonhu")]
 layout_mode = 2
+focus_neighbor_left = NodePath("../Slot2")
+focus_neighbor_top = NodePath("../Slot13")
+focus_neighbor_right = NodePath("../Slot4")
+focus_neighbor_bottom = NodePath("../Slot8")
+focus_mode = 2
 
 [node name="Slot4" parent="NinePatchRect/GridContainer" instance=ExtResource("2_tonhu")]
 layout_mode = 2
+focus_neighbor_left = NodePath("../Slot3")
+focus_neighbor_top = NodePath("../Slot14")
+focus_neighbor_right = NodePath("../Slot5")
+focus_neighbor_bottom = NodePath("../Slot9")
+focus_mode = 2
 
 [node name="Slot5" parent="NinePatchRect/GridContainer" instance=ExtResource("2_tonhu")]
 layout_mode = 2
+focus_neighbor_left = NodePath("../Slot4")
+focus_neighbor_top = NodePath("../Slot15")
+focus_neighbor_right = NodePath("../Slot6")
+focus_neighbor_bottom = NodePath("../Slot10")
+focus_mode = 2
 
 [node name="Slot6" parent="NinePatchRect/GridContainer" instance=ExtResource("2_tonhu")]
 layout_mode = 2
+focus_neighbor_left = NodePath("../Slot5")
+focus_neighbor_top = NodePath("../Slot")
+focus_neighbor_right = NodePath("../Slot7")
+focus_neighbor_bottom = NodePath("../Slot11")
+focus_mode = 2
 
 [node name="Slot7" parent="NinePatchRect/GridContainer" instance=ExtResource("2_tonhu")]
 layout_mode = 2
+focus_neighbor_left = NodePath("../Slot6")
+focus_neighbor_top = NodePath("../Slot2")
+focus_neighbor_right = NodePath("../Slot8")
+focus_neighbor_bottom = NodePath("../Slot12")
+focus_mode = 2
 
 [node name="Slot8" parent="NinePatchRect/GridContainer" instance=ExtResource("2_tonhu")]
 layout_mode = 2
+focus_neighbor_left = NodePath("../Slot7")
+focus_neighbor_top = NodePath("../Slot3")
+focus_neighbor_right = NodePath("../Slot9")
+focus_neighbor_bottom = NodePath("../Slot13")
+focus_mode = 2
 
 [node name="Slot9" parent="NinePatchRect/GridContainer" instance=ExtResource("2_tonhu")]
 layout_mode = 2
+focus_neighbor_left = NodePath("../Slot8")
+focus_neighbor_top = NodePath("../Slot4")
+focus_neighbor_right = NodePath("../Slot10")
+focus_neighbor_bottom = NodePath("../Slot14")
+focus_mode = 2
 
 [node name="Slot10" parent="NinePatchRect/GridContainer" instance=ExtResource("2_tonhu")]
 layout_mode = 2
+focus_neighbor_left = NodePath("../Slot9")
+focus_neighbor_top = NodePath("../Slot5")
+focus_neighbor_right = NodePath("../Slot11")
+focus_neighbor_bottom = NodePath("../Slot15")
+focus_mode = 2
 
 [node name="Slot11" parent="NinePatchRect/GridContainer" instance=ExtResource("2_tonhu")]
 layout_mode = 2
+focus_neighbor_left = NodePath("../Slot10")
+focus_neighbor_top = NodePath("../Slot6")
+focus_neighbor_right = NodePath("../Slot12")
+focus_neighbor_bottom = NodePath("../Slot")
+focus_mode = 2
 
 [node name="Slot12" parent="NinePatchRect/GridContainer" instance=ExtResource("2_tonhu")]
 layout_mode = 2
+focus_neighbor_left = NodePath("../Slot11")
+focus_neighbor_top = NodePath("../Slot7")
+focus_neighbor_right = NodePath("../Slot13")
+focus_neighbor_bottom = NodePath("../Slot2")
+focus_mode = 2
 
 [node name="Slot13" parent="NinePatchRect/GridContainer" instance=ExtResource("2_tonhu")]
 layout_mode = 2
+focus_neighbor_left = NodePath("../Slot12")
+focus_neighbor_top = NodePath("../Slot8")
+focus_neighbor_right = NodePath("../Slot14")
+focus_neighbor_bottom = NodePath("../Slot3")
+focus_mode = 2
 
 [node name="Slot14" parent="NinePatchRect/GridContainer" instance=ExtResource("2_tonhu")]
 layout_mode = 2
+focus_neighbor_left = NodePath("../Slot13")
+focus_neighbor_top = NodePath("../Slot9")
+focus_neighbor_right = NodePath("../Slot15")
+focus_neighbor_bottom = NodePath("../Slot4")
+focus_mode = 2
 
 [node name="Slot15" parent="NinePatchRect/GridContainer" instance=ExtResource("2_tonhu")]
 layout_mode = 2
+focus_neighbor_left = NodePath("../Slot14")
+focus_neighbor_top = NodePath("../Slot10")
+focus_neighbor_right = NodePath("../Slot")
+focus_neighbor_bottom = NodePath("../Slot5")
+focus_mode = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 81.0
+offset_right = 36.0
+offset_bottom = 92.0
+theme_override_fonts/font = ExtResource("5_ur25s")
+theme_override_font_sizes/font_size = 5
+text = "[E]   to    Use"
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 81.0
+offset_right = 80.0
+offset_bottom = 92.0
+theme_override_fonts/font = ExtResource("5_ur25s")
+theme_override_font_sizes/font_size = 5
+text = "[Del]   to    Delete"
+
+[node name="Label3" type="Label" parent="."]
+layout_mode = 0
+offset_left = 83.0
+offset_top = 81.0
+offset_right = 123.0
+offset_bottom = 92.0
+theme_override_fonts/font = ExtResource("5_ur25s")
+theme_override_font_sizes/font_size = 5
+text = "[R]   to    Examin"
+
+[connection signal="deleteSlotObj" from="." to="NinePatchRect/GridContainer/Slot" method="_deleteSlotObject"]
+[connection signal="examineSlotObj" from="." to="NinePatchRect/GridContainer/Slot" method="_examineSlotObject"]
+[connection signal="useSlotObj" from="." to="NinePatchRect/GridContainer/Slot" method="_useSlotObject"]
