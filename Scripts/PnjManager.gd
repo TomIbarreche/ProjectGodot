@@ -8,4 +8,4 @@ func _ready():
 func _input(event):
 	if event.is_action_pressed("test"):
 		for pnj in pnjs:
-			DialogManager.StartDialog(pnj.global_position, pnj.lines, pnj, pnj.current_line_index)
+			DialogManager.StartDialog(pnj)

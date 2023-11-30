@@ -8341,9 +8341,9 @@ action_name = "exit"
 position = Vector2(304, 417)
 
 [node name="PNJ" parent="." node_paths=PackedStringArray("endPoint") instance=ExtResource("10_vs5nv")]
-position = Vector2(337, 265)
+position = Vector2(330, 265)
 endPoint = NodePath("Marker2D")
-lines = Array[String](["Lets write, a long dialog for once!", "See you then!"])
+lines = Array[String](["I think Igmar have flee the city..", "He didnt seems quite well the last time I see him..", "I dont understand why the Alterate have choose him for the prophecy..", "I hope he will return or will all gonna die!!", "Sights...."])
 
 [node name="Marker2D" type="Marker2D" parent="PNJ"]
 position = Vector2(53, -39)
@@ -8351,7 +8351,7 @@ position = Vector2(53, -39)
 [node name="PNJ2" parent="." node_paths=PackedStringArray("endPoint") instance=ExtResource("10_vs5nv")]
 position = Vector2(83, 401)
 endPoint = NodePath("Marker2D")
-lines = Array[String](["Lets write, a long dialog for once!", "See you then!"])
+lines = Array[String](["Good morning Myxolicent..", "How are you today ??", "Farewell.."])
 
 [node name="Marker2D" type="Marker2D" parent="PNJ2"]
 position = Vector2(53, -39)
