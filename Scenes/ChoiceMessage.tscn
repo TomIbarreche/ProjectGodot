@@ -1,0 +1,41 @@
+[gd_scene load_steps=2 format=3 uid="uid://drc2bs1mhlugv"]
+
+[ext_resource type="Script" path="res://Scripts/ChoiceMessage.gd" id="1_l1a73"]
+
+[node name="ChoiceMessage" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_l1a73")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_top = 58.0
+offset_right = 382.0
+offset_bottom = 158.0
+
+[node name="VSplitContainer" type="VSplitContainer" parent="Panel"]
+layout_mode = 0
+offset_right = 382.0
+offset_bottom = 98.0
+
+[node name="Label" type="Label" parent="Panel/VSplitContainer"]
+layout_mode = 2
+text = "Do you want to unlock the door with the Bank Key"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="HSplitContainer" type="HSplitContainer" parent="Panel/VSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="YesBtn" type="Button" parent="Panel/VSplitContainer/HSplitContainer"]
+layout_mode = 2
+text = "Yes"
+
+[node name="NoBtn" type="Button" parent="Panel/VSplitContainer/HSplitContainer"]
+layout_mode = 2
+text = "No"
+
+[connection signal="pressed" from="Panel/VSplitContainer/HSplitContainer/YesBtn" to="." method="_on_yes_btn_pressed"]
+[connection signal="pressed" from="Panel/VSplitContainer/HSplitContainer/NoBtn" to="." method="_on_no_btn_pressed"]

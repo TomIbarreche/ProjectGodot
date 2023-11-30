@@ -189,6 +189,15 @@ theme_override_fonts/font = ExtResource("5_ur25s")
 theme_override_font_sizes/font_size = 5
 text = "[R]   to    Examin"
 
+[node name="ItemName" type="Label" parent="."]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 4.0
+offset_right = 78.0
+offset_bottom = 15.0
+theme_override_fonts/font = ExtResource("5_ur25s")
+theme_override_font_sizes/font_size = 5
+
 [connection signal="deleteSlotObj" from="." to="NinePatchRect/GridContainer/Slot" method="_deleteSlotObject"]
 [connection signal="examineSlotObj" from="." to="NinePatchRect/GridContainer/Slot" method="_examineSlotObject"]
 [connection signal="useSlotObj" from="." to="NinePatchRect/GridContainer/Slot" method="_useSlotObject"]

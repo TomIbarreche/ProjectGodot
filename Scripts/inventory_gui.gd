@@ -10,6 +10,7 @@ signal examineSlotObj
 
 @onready var inventory: Inventory = preload("res://Inventory/playerInventory.tres")
 @onready var slots: Array = $NinePatchRect/GridContainer.get_children()
+@onready var itemNamePlaceholder: Label = $ItemName
 
 var currentInventorySlot: InventorySlot
 var currentSlot
@@ -87,4 +88,5 @@ func _on_focus_changed(control: Control):
 			if slot == control:
 				currentInventorySlot = inventory.slots[index]
 				currentSlot = slot
+				itemNamePlaceholder.text = inventory.slots[index].item.name
 			index += 1

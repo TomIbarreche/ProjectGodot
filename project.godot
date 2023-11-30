@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 InteractionManager="*res://interaction/interaction area/InteractionManager.tscn"
+MessageManager="*res://message/MessageManager.tscn"
 
 [display]
 
@@ -26,10 +27,6 @@ window/size/viewport_height=216
 window/size/window_width_override=780
 window/size/window_height_override=400
 window/stretch/mode="canvas_items"
-
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/sprite_painter/plugin.cfg")
 
 [input]
 

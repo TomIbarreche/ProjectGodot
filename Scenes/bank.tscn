@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/bank.gd" id="1_w0n8k"]
 [ext_resource type="Texture2D" uid="uid://j4byxpdfy4kk" path="res://assets/tilesets/Roguelike Modern City pack/Spritesheet/roguelikeCity_magenta.png" id="1_xtlxe"]
-[ext_resource type="PackedScene" path="res://Scenes/roof.tscn" id="2_jjk4j"]
+[ext_resource type="PackedScene" uid="uid://dlqlsag328evh" path="res://Scenes/roof.tscn" id="2_jjk4j"]
 [ext_resource type="Texture2D" uid="uid://cdj5jey6lwuxh" path="res://assets/tilesets/TX Tileset Stone Ground.png" id="3_pg0p8"]
 [ext_resource type="Texture2D" uid="uid://bavtntefwj673" path="res://assets/tilesets/TilesetNature.png" id="4_p0jw2"]
 [ext_resource type="PackedScene" uid="uid://lc76mpacso37" path="res://interaction/interaction area/interaction_area.tscn" id="6_5g1wt"]
@@ -1391,7 +1391,7 @@ layer_1/tile_data = PackedInt32Array(655361, 1572864, 8, 458757, 1703936, 20, 45
 
 [node name="InteractionArea" parent="." instance=ExtResource("6_5g1wt")]
 position = Vector2(81, 173)
-action_name = "enter"
+action_name = "Unlock"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 position = Vector2(1, 0)

@@ -5,7 +5,7 @@
 [ext_resource type="Resource" uid="uid://dtd5fnm4jcjdk" path="res://Inventory/bank_key.tres" id="2_lyy8x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j7k1t"]
-size = Vector2(12, 6)
+size = Vector2(22, 14)
 
 [node name="Key" instance=ExtResource("1_vyi3h")]
 itemRes = ExtResource("2_lyy8x")

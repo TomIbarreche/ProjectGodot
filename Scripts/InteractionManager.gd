@@ -49,5 +49,3 @@ func _input(event):
 				await active_areas[0].interact.call(player)
 				can_interact = true
 				is_interacting = false
-		
-		

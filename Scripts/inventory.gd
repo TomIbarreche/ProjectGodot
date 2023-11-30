@@ -20,3 +20,10 @@ func insert(item: InventoryItem):
 			inventory_updated.emit()
 			return
 			
+
+func CheckForItemInInventory(itemName: String):
+	for slot in slots:
+		if slot.item != null:
+			if slot.item.name == itemName:
+				return true
+	return false

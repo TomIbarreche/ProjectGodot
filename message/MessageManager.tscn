@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://qh3g4vh7xkkb"]
+
+[ext_resource type="Script" path="res://message/MessageManager.gd" id="1_qrf7f"]
+
+[node name="MessageManager" type="Node2D" groups=["messageManager"]]
+script = ExtResource("1_qrf7f")

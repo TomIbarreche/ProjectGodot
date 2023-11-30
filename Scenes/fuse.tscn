@@ -1,18 +1,18 @@
 [gd_scene load_steps=5 format=3 uid="uid://boex4716mlg1g"]
 
-[ext_resource type="PackedScene" uid="uid://fjgwxkpcterq" path="res://Scenes/collectable.tscn" id="1_i2bvc"]
-[ext_resource type="Resource" uid="uid://3g2w4opgegn4" path="res://Inventory/stone.tres" id="2_45hmb"]
-[ext_resource type="Texture2D" uid="uid://cftg13rexudjb" path="res://assets/sprites/door.png" id="3_jjqj8"]
+[ext_resource type="PackedScene" uid="uid://fjgwxkpcterq" path="res://Scenes/collectable.tscn" id="1_76iy0"]
+[ext_resource type="Resource" uid="uid://bgvvjbqj5875l" path="res://Inventory/fuse.tres" id="2_oj2se"]
+[ext_resource type="Texture2D" uid="uid://lsovf7t2n8gy" path="res://assets/sprites/fuse.png" id="3_krey2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fchas"]
 size = Vector2(15, 17)
 
-[node name="test" instance=ExtResource("1_i2bvc")]
-itemRes = ExtResource("2_45hmb")
+[node name="Fuse" instance=ExtResource("1_76iy0")]
+itemRes = ExtResource("2_oj2se")
 
 [node name="Sprite2D" parent="." index="0"]
 scale = Vector2(1, 1.107)
-texture = ExtResource("3_jjqj8")
+texture = ExtResource("3_krey2")
 
 [node name="InteractionArea" parent="." index="1"]
 position = Vector2(15, -12)

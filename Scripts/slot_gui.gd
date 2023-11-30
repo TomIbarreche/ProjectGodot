@@ -15,7 +15,6 @@ func update(slot: InventorySlot):
 		amountLabel.visible = false
 		slot_is_occupy = false
 	else:
-		print("Index ", slot.item.indexInInventory)
 		backgroundSprite.frame = 1
 		itemSprite.visible = true
 		itemSprite.texture = slot.item.textureInInventory
@@ -52,11 +51,13 @@ func _useSlotObject(inventorySlot):
 		
 	
 func _deleteSlotObject(inventorySlot):
+	print("delete ", inventorySlot.item.name)
 	inventorySlot.amount = inventorySlot.amount -1
 	if inventorySlot.amount < 1:
 		inventorySlot.item = null
 	update(inventorySlot)
-	inventory.order() 
+	inventory.order()
+	
 
 func _examineSlotObject(inventorySlot):
 	print("examine ", inventorySlot.item.name)
