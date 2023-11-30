@@ -9,6 +9,7 @@ class_name PNJ
 
 var startPosition
 var endPosition
+var current_line_index = 0
 
 @export var lines: Array[String]
 
@@ -45,8 +46,5 @@ func _physics_process(delta):
 	move_and_slide()
 	updateAnimation()
 
-func _input(event):
-	if event.is_action_pressed("test"):
-		print("start dialog")
-		DialogManager.StartDialog(global_position, lines, self)
+
 		

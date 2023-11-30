@@ -2,60 +2,29 @@ extends Node
 
 @onready var text_box_scene = preload("res://Scenes/text box/text_box.tscn")
 
-var dialog_lines: Array[String] = []
-var current_line_index = 0
-
-var text_box
-var text_box_position: Vector2
-
-var is_dialog_active = false
-var can_advance_line = false
-var target: PNJ
-
 func StartDialog(position: Vector2, lines: Array[String], pnj: PNJ):
-	target = pnj
-	if is_dialog_active:
-		return
+	ShowTextBox(position, lines, pnj, pnj.current_line_index)
 	
-	dialog_lines = lines
-	text_box_position = position
-	ShowTextBox()
-	
-	is_dialog_active = true
-	
-func ShowTextBox():
-	text_box = text_box_scene.instantiate()
+func ShowTextBox(position: Vector2, dialog: Array[String], pnj: PNJ, currentLineIndex):
+	var text_box = text_box_scene.instantiate()
 	text_box.finished_displaying_dialog.connect(_on_text_box_finished_displaying)
 	get_tree().root.add_child(text_box)
-	text_box.global_position = text_box_position
-	text_box.DisplayText(dialog_lines[current_line_index])
-	can_advance_line = false
+	text_box.global_position = position
+#	text_box.DisplayText(dialog[currentLineIndex], pnj)
+	text_box.DisplayText(dialog[pnj.current_line_index], pnj)
 
-func _on_text_box_finished_displaying():
-	can_advance_line = true
+func _on_text_box_finished_displaying(pnj:PNJ, dialog: Array[String], position: Vector2, text_box):
 	text_box.queue_free()
-	current_line_index += 1
-	if current_line_index >= dialog_lines.size():
-		is_dialog_active = false
-		current_line_index = 0
+	pnj.current_line_index += 1
+	if pnj.current_line_index >= dialog.size():
+		pnj.current_line_index = 0
 		return
+	ShowTextBox(position, dialog, pnj, pnj.current_line_index)
 	
-	ShowTextBox()
-	
-func _unhandled_input(event):
-#	if (event.is_action_pressed("interact") && is_dialog_active && can_advance_line):
-#		text_box.queue_free()
-#		current_line_index += 1
-#		if current_line_index >= dialog_lines.size():
-#			is_dialog_active = false
-#			current_line_index = 0
-#			return
-#
-#		ShowTextBox()
-	pass
 		
 func _process(delta):
-	if target != null && text_box != null:
-		text_box.global_position.y = target.global_position.y - 48
-		text_box.global_position.x = target.global_position.x -60
+#	if target != null && text_box != null:
+#		text_box.global_position.y = target.global_position.y - 48
+#		text_box.global_position.x = target.global_position.x -60
+	pass
 		

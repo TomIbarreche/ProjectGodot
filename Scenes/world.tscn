@@ -8343,7 +8343,7 @@ position = Vector2(304, 417)
 [node name="PNJ" parent="." node_paths=PackedStringArray("endPoint") instance=ExtResource("10_vs5nv")]
 position = Vector2(337, 265)
 endPoint = NodePath("Marker2D")
-lines = Array[String](["Hello, you sweet child!!", "Did you hear the sound of the Forest?", "Dont mind if I ignore you.", "In fact I can tell if you are here or not.", "See you then!"])
+lines = Array[String](["Lets write, a long dialog for once!", "See you then!"])
 
 [node name="Marker2D" type="Marker2D" parent="PNJ"]
 position = Vector2(53, -39)
@@ -8351,7 +8351,7 @@ position = Vector2(53, -39)
 [node name="PNJ2" parent="." node_paths=PackedStringArray("endPoint") instance=ExtResource("10_vs5nv")]
 position = Vector2(83, 401)
 endPoint = NodePath("Marker2D")
-lines = Array[String](["LETS GO LETS GO.", "My life has become a burden.", "Gaziling into nocturnal prime!"])
+lines = Array[String](["Lets write, a long dialog for once!", "See you then!"])
 
 [node name="Marker2D" type="Marker2D" parent="PNJ2"]
 position = Vector2(53, -39)

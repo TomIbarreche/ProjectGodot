@@ -12,14 +12,20 @@ var letter_index = 0
 var letter_time = 0.03
 var space_time = 0.06
 var punctuation_time = 1
+var Pnj
 
 signal finished_displaying_dialog
 	
-func DisplayText(text_to_display: String):
+func DisplayText(text_to_display: String, pnj):
+	print("DISPLAY TEXT")
+	print("FOR PNJ ", pnj)
+	print("TEXT TO PRINT ", text_to_display)
+	Pnj = pnj
+	
 	text = text_to_display
 	label.text = text_to_display
 
-	await resized
+#	await resized
 	custom_minimum_size.x = min(size.x, MAX_WIDTH)
 
 	if size.x > MAX_WIDTH:
@@ -32,13 +38,16 @@ func DisplayText(text_to_display: String):
 	global_position.y -= size.y + 24
 
 	label.text = ""
-	DisplayLetter()
+	print("ARE YOU HERE ", Pnj)
+	DisplayLetter(Pnj)
 	
-func DisplayLetter():
+func DisplayLetter(Pnj):
 	label.text += text[letter_index]
 	letter_index += 1
 	if letter_index >= text.length():
-		finished_displaying_dialog.emit()
+		print("END Of DISPLAY for text ", text)
+		print("FOR PNJ ", Pnj)
+		finished_displaying_dialog.emit(Pnj, Pnj.lines, Pnj.global_position, self)
 		return
 	
 	match text[letter_index]:
@@ -52,4 +61,4 @@ func DisplayLetter():
 
 
 func _on_letter_display_timer_timeout():
-	DisplayLetter()
+	DisplayLetter(Pnj)
