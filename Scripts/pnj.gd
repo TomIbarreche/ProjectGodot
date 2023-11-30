@@ -10,6 +10,8 @@ class_name PNJ
 var startPosition
 var endPosition
 
+@export var lines: Array[String]
+
 func _ready():
 	startPosition = position
 	endPosition = endPoint.global_position
@@ -42,3 +44,9 @@ func _physics_process(delta):
 	updateVelocity()
 	move_and_slide()
 	updateAnimation()
+
+func _input(event):
+	if event.is_action_pressed("test"):
+		print("start dialog")
+		DialogManager.StartDialog(global_position, lines, self)
+		
