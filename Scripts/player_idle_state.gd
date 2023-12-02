@@ -4,7 +4,7 @@ extends State
 @export var player: Player
 @export var animator: AnimationPlayer
 @export var speed=0
-
+const STATE_NAME = "IDLE"
 signal is_moving
 signal is_interacting
 

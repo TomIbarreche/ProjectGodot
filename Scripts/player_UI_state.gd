@@ -1,6 +1,7 @@
 extends State
 class_name PlayerUIState
 
+const STATE_NAME = "UI"
 func _ready():
 	set_process(false)
 	

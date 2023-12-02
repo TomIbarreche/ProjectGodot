@@ -8,6 +8,7 @@ extends Node
 @onready var player_inventory_state = $FinalStateMachine/PlayerInventoryState as PlayerInventoryState
 @onready var player_UI_state = $FinalStateMachine/PlayerUIState as PlayerUIState
 @onready var inventory = get_tree().get_first_node_in_group("inventory") as InventoryGUI
+@onready var pauseMenu = get_tree().get_first_node_in_group("pauseMenu") as PauseMenu
 
 
 func _ready():
@@ -25,4 +26,7 @@ func _ready():
 	
 	MessageManager.MessageOpen.connect(final_state_machine.change_state.bind(player_UI_state))
 	MessageManager.MessageClose.connect(final_state_machine.change_state.bind(player_idle_state))
+	
+	pauseMenu.pauseOn.connect(final_state_machine.change_state.bind(player_UI_state))
+	pauseMenu.pauseOff.connect(final_state_machine.change_state.bind(player_idle_state))
 	

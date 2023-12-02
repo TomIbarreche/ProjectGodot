@@ -3,7 +3,7 @@ extends State
 
 @export var player: Player
 @export var animator: AnimationPlayer
-
+const STATE_NAME = "INVENTORY"
 func _ready():
 	set_process(false)
 	

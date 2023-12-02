@@ -11,6 +11,7 @@ signal examineSlotObj
 @onready var inventory: Inventory = preload("res://Inventory/playerInventory.tres")
 @onready var slots: Array = $NinePatchRect/GridContainer.get_children()
 @onready var itemNamePlaceholder: Label = $ItemName
+@onready var player = get_tree().get_first_node_in_group("player") as Player
 
 var currentInventorySlot: InventorySlot
 var currentSlot
@@ -70,7 +71,7 @@ func toggle_inventory():
 		open()
 
 func _input(event):
-	if event.is_action_pressed("toggle_inventory"):
+	if event.is_action_pressed("toggle_inventory") && player.get_node("PlayerStateManager").get_node("FinalStateMachine").state.STATE_NAME != "UI":
 		toggle_inventory()
 		
 	if currentSlot and currentSlot.slot_is_occupy == true and isOpen:
