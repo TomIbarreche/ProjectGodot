@@ -1,5 +1,6 @@
-[gd_scene load_steps=38 format=3 uid="uid://qnvix6ibdco4"]
+[gd_scene load_steps=39 format=3 uid="uid://qnvix6ibdco4"]
 
+[ext_resource type="Script" path="res://Scripts/GameData.gd" id="1_67n1d"]
 [ext_resource type="PackedScene" uid="uid://d2ijsqy6tj1nf" path="res://Scenes/player.tscn" id="1_m6fr8"]
 [ext_resource type="Texture2D" uid="uid://c1e2lg02cdein" path="res://assets/tilesets/TilesetFloor.png" id="2_j0qsy"]
 [ext_resource type="Texture2D" uid="uid://bavtntefwj673" path="res://assets/tilesets/TilesetNature.png" id="3_qwsae"]
@@ -8069,6 +8070,7 @@ sources/0 = SubResource("TileSetAtlasSource_v4vk3")
 
 [node name="World" type="Node2D"]
 y_sort_enabled = true
+script = ExtResource("1_67n1d")
 
 [node name="Bank" parent="." node_paths=PackedStringArray("spawn", "interiorTileMap") instance=ExtResource("6_sxekd")]
 position = Vector2(222, 221)
@@ -8302,7 +8304,7 @@ layer_3/tile_data = PackedInt32Array(4063232, 458753, 12, 4063233, 458753, 12, 4
 position = Vector2(233, 918)
 
 [node name="Player" parent="." instance=ExtResource("1_m6fr8")]
-position = Vector2(205, 177)
+position = Vector2(145, 252)
 
 [node name="FollowCamera" type="Camera2D" parent="Player"]
 position = Vector2(0, -2)
@@ -8381,6 +8383,7 @@ visible = false
 [node name="ChoiceMessage" parent="CanvasLayer" groups=["choiceMessage"] instance=ExtResource("21_vorb3")]
 
 [node name="PauseMenu" parent="CanvasLayer" groups=["pauseMenu"] instance=ExtResource("23_t0buu")]
+visible = false
 script = ExtResource("24_yamki")
 
 [node name="Sign" parent="." instance=ExtResource("22_ww6hc")]
@@ -8400,9 +8403,12 @@ script = ExtResource("24_xyri8")
 [connection signal="borderReached" from="TileMapNordOuest/BorderNO-O" to="Player/FollowCamera" method="_on_border_reached"]
 [connection signal="borderReached" from="TileMapNord/BorderN-NO" to="Player/FollowCamera" method="_on_border_reached"]
 [connection signal="borderReached" from="BankInterior/ExitBank" to="Player/FollowCamera" method="_on_border_reached"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/VBoxContainer/SaveBtn" to="." method="_on_save_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/VBoxContainer/LoadBtn" to="." method="_on_load_btn_pressed"]
 
 [editable path="Bank"]
 [editable path="TileMapNordOuest/BorderNO-N"]
 [editable path="Player"]
 [editable path="BankInterior/ExitBank"]
+[editable path="CanvasLayer/PauseMenu"]
 [editable path="FuseBox"]

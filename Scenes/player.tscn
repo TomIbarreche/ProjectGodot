@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://d2ijsqy6tj1nf"]
+[gd_scene load_steps=21 format=3 uid="uid://d2ijsqy6tj1nf"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_147pu"]
 [ext_resource type="Resource" uid="uid://cnfg23ijcqglm" path="res://Inventory/playerInventory.tres" id="2_5gvf2"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://Scripts/player_moving_state.gd" id="4_damux"]
 [ext_resource type="Script" path="res://Scripts/player_state_manager.gd" id="8_d1alm"]
 [ext_resource type="Script" path="res://Scripts/player_UI_state.gd" id="10_wsab8"]
+[ext_resource type="FontFile" uid="uid://cl7oxrao185jj" path="res://Resources/subatomic.tsoonami.ttf" id="11_mag54"]
 
 [sub_resource type="Animation" id="Animation_337n8"]
 length = 0.001
@@ -195,3 +196,14 @@ collision_layer = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2(0, -6.5)
 shape = SubResource("RectangleShape2D_1pcsl")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -22.0
+offset_top = -38.0
+offset_right = 24.0
+offset_bottom = -15.0
+theme_override_fonts/font = ExtResource("11_mag54")
+theme_override_font_sizes/font_size = 5
+text = "[E] to interact"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -17,10 +17,10 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-InteractionManager="*res://interaction/interaction area/InteractionManager.tscn"
 MessageManager="*res://message/MessageManager.tscn"
 DialogManager="*res://Scripts/DialogManager.gd"
 PnjManager="*res://Scripts/PnjManager.gd"
+InteractionManager="*res://Scripts/InteractionManager.gd"
 
 [display]
 
