@@ -1,4 +1,4 @@
-extends MarginContainer
+extends Control
 
 @onready var label = $MarginContainer/Label
 @onready var timer = $LetterDisplayTimer
@@ -36,11 +36,11 @@ func DisplayText(text_to_display: String, pnj):
 	label.text = ""
 	DisplayLetter(Pnj)
 	
-func DisplayLetter(Pnj):
+func DisplayLetter(pnj):
 	label.text += text[letter_index]
 	letter_index += 1
 	if letter_index >= text.length():
-		finished_displaying_dialog.emit(Pnj, self)
+		finished_displaying_dialog.emit(pnj, self)
 		return
 	
 	match text[letter_index]:

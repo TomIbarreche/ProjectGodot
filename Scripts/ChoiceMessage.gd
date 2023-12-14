@@ -19,22 +19,21 @@ func open(message):
 	visible = true
 	yesBtn.grab_focus()
 
-
 func _on_yes_btn_pressed():
 	yesBtnPressed.emit()
 	close()
 
-
 func _on_no_btn_pressed():
 	noBtnPressed.emit()
 	close()
-	
 
 func _input(event):
 	if MessageManager.isChoiceMessageOpen:
 		if event.is_action_pressed("interact") && yesBtn.has_focus():
+			get_viewport().set_input_as_handled()
 			yesBtnPressed.emit()
 			close()
 		if event.is_action_pressed("interact") && noBtn.has_focus():
+			get_viewport().set_input_as_handled()
 			noBtnPressed.emit()
 			close()

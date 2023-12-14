@@ -8,14 +8,7 @@ func updateTileMapLimit(tileMap):
 	limit_right = limit_left + mapRect.size.x * tileSize
 	limit_top = mapRect.position.y * tileSize
 	limit_bottom = limit_top + mapRect.size.y * tileSize
-	
-#	print("left ", limit_left)
-#	print("right ", limit_right)
-#	print("top ", limit_top)
-#	print("down ", limit_bottom)
-#	print("map rect ", mapRect)
-#	print(tileSize)
-	
+
 
 func updatePlayerPosition(spawn, body):
 	body.position.x = spawn.global_position.x
@@ -29,4 +22,20 @@ func _on_border_reached(tileMap, spawn, player):
 
 func _on_bank_enter_bank(player, spawn, interiorTileMap):
 	updatePlayerPosition(spawn, player)
-	updateTileMapLimit(interiorTileMap)
+	update_tilemap_limit_for_building(interiorTileMap)
+	World.is_player_in_building = true
+	
+func update_tilemap_limit_for_building(interiorTileMap):
+	var mapRect = interiorTileMap.get_used_rect() #REnvoi un rectangle avec la position et la taille de la tilemap
+	var tileSize = interiorTileMap.cell_quadrant_size
+	limit_left = interiorTileMap.global_position.x
+	limit_right = limit_left + mapRect.size.x *tileSize
+	limit_top = interiorTileMap.global_position.y
+	limit_bottom = limit_top + mapRect.size.y * tileSize
+
+
+func _on_bank_interior_exit_bank(player, spawn, exteriorTileMap):
+	updatePlayerPosition(spawn, player)
+	updateTileMapLimit(exteriorTileMap)
+	World.is_player_in_building = false	
+	

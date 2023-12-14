@@ -1,14 +1,14 @@
 extends StaticBody2D
+class_name InteriorLight
 
 @onready var interaction_area: InteractionArea = $InteractionArea
 @onready var animator = $AnimationPlayer
-@export var spawn: Marker2D
-@export var interiorTileMap: TileMap
+@export var bank_interior: Node2D
 @onready var inventory = get_tree().get_first_node_in_group("inventory")
 
 var isLock: bool = true
 var player = null
-signal enterBank
+signal enterBank(player: Player, spawn: Marker2D, tilemap: TileMap)
 
 func _ready():
 	interaction_area.interact = Callable(self, "_on_interact")
@@ -26,13 +26,11 @@ func _on_interact(Pplayer):
 			else:
 				MessageManager.CloseMessage()
 		
-	elif isLock == false && MessageManager.IsChoiceMessageOpen() == false:
+	else:
 		animator.play("doors_open")
 		await $AnimationPlayer.animation_finished
-		enterBank.emit(Pplayer, spawn, interiorTileMap)
+		enterBank.emit(Pplayer, bank_interior.spawn, bank_interior.interior)
 		animator.play("doors_close")
-	
-
 
 func UnlockDoor():
 	isLock= false

@@ -26,7 +26,7 @@ func update(slot: InventorySlot):
 			amountLabel.visible = false
 			
 		
-func _process(delta):
+func _process(_delta):
 	if has_focus() and slot_is_occupy:  
 		modulate = "74ffff"
 	else:

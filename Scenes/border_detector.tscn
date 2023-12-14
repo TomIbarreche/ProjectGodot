@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://lc76mpacso37" path="res://interaction/interaction area/interaction_area.tscn" id="2_lvfo8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vtn1r"]
+size = Vector2(32, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_87ys0"]
 size = Vector2(13, 11)
@@ -19,7 +20,7 @@ action_name = "enter"
 shape = SubResource("RectangleShape2D_vtn1r")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-collision_mask = 2
+collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(0.5, 0.5)

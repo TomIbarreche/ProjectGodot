@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://d2ijsqy6tj1nf"]
+[gd_scene load_steps=22 format=3 uid="uid://d2ijsqy6tj1nf"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_147pu"]
 [ext_resource type="Resource" uid="uid://cnfg23ijcqglm" path="res://Inventory/playerInventory.tres" id="2_5gvf2"]
@@ -132,13 +132,18 @@ size = Vector2(14, 3)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1pcsl"]
 size = Vector2(14, 13)
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_5oxdn"]
+cull_mode = 1
+polygon = PackedVector2Array(-4, -1, -4, 0, 3, 0, 3, -1)
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 z_index = 1
 texture_filter = 1
-position = Vector2(124, 61)
-collision_layer = 2
+position = Vector2(123, 61)
+collision_mask = 7
 script = ExtResource("1_147pu")
 inventory = ExtResource("2_5gvf2")
+speed = 150
 metadata/_edit_group_ = true
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
@@ -158,38 +163,6 @@ position = Vector2(0, -1.5)
 shape = SubResource("RectangleShape2D_br6y1")
 debug_color = Color(0.372549, 0.541176, 0.780392, 0.419608)
 
-[node name="PlayerStateManager" type="Node2D" parent="."]
-script = ExtResource("8_d1alm")
-
-[node name="FinalStateMachine" type="Node" parent="PlayerStateManager" node_paths=PackedStringArray("state")]
-script = ExtResource("3_587ak")
-state = NodePath("PlayerIdleState")
-
-[node name="PlayerMovingState" type="Node" parent="PlayerStateManager/FinalStateMachine" node_paths=PackedStringArray("player", "animator")]
-script = ExtResource("4_damux")
-player = NodePath("../../..")
-animator = NodePath("../../../AnimationPlayer")
-speed = 200
-
-[node name="PlayerIdleState" type="Node" parent="PlayerStateManager/FinalStateMachine" node_paths=PackedStringArray("player", "animator")]
-script = ExtResource("4_648wv")
-player = NodePath("../../..")
-animator = NodePath("../../../AnimationPlayer")
-speed = 200
-
-[node name="PlayerInteractState" type="Node" parent="PlayerStateManager/FinalStateMachine" node_paths=PackedStringArray("player", "animator")]
-script = ExtResource("3_rd6jq")
-player = NodePath("../../..")
-animator = NodePath("../../../AnimationPlayer")
-
-[node name="PlayerInventoryState" type="Node" parent="PlayerStateManager/FinalStateMachine" node_paths=PackedStringArray("player", "animator")]
-script = ExtResource("3_str44")
-player = NodePath("../../..")
-animator = NodePath("../../../AnimationPlayer")
-
-[node name="PlayerUIState" type="Node" parent="PlayerStateManager/FinalStateMachine"]
-script = ExtResource("10_wsab8")
-
 [node name="HurtBox" type="Area2D" parent="."]
 collision_layer = 2
 
@@ -198,6 +171,7 @@ position = Vector2(0, -6.5)
 shape = SubResource("RectangleShape2D_1pcsl")
 
 [node name="Label" type="Label" parent="."]
+visible = false
 offset_left = -22.0
 offset_top = -38.0
 offset_right = 24.0
@@ -207,3 +181,28 @@ theme_override_font_sizes/font_size = 5
 text = "[E] to interact"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="FinalStateMachine" type="Node" parent="." node_paths=PackedStringArray("state")]
+script = ExtResource("3_587ak")
+state = NodePath("PlayerStateManager/PlayerIdleState")
+
+[node name="PlayerStateManager" type="Node" parent="FinalStateMachine"]
+script = ExtResource("8_d1alm")
+
+[node name="PlayerIdleState" type="Node" parent="FinalStateMachine/PlayerStateManager"]
+script = ExtResource("4_648wv")
+
+[node name="PlayerMovingState" type="Node" parent="FinalStateMachine/PlayerStateManager"]
+script = ExtResource("4_damux")
+
+[node name="PlayerInteractState" type="Node" parent="FinalStateMachine/PlayerStateManager"]
+script = ExtResource("3_rd6jq")
+
+[node name="PlayerInventoryState" type="Node" parent="FinalStateMachine/PlayerStateManager"]
+script = ExtResource("3_str44")
+
+[node name="PlayerUIState" type="Node" parent="FinalStateMachine/PlayerStateManager"]
+script = ExtResource("10_wsab8")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_5oxdn")

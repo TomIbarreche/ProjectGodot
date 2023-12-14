@@ -6,13 +6,15 @@ signal interactable_area_near(interactable_area)
 
 var active_areas = []
 var is_interacting = false
-
-func _process(delta):
-	if active_areas.size() > 0:
+var active_area
+func _process(_delta):
+	if active_areas.size() > 0 && active_area != active_areas[0]:
+		active_area = active_areas[0]
 		active_areas.sort_custom(_sort_by_distance_to_player)
 		interactable_area_near.emit(active_areas[0])
-	else:
+	elif active_areas.size() <= 0:
 		interactable_area_near.emit(null)
+		active_area = null
 		
 func _sort_by_distance_to_player(area1, area2):
 	var area1_to_player = player.global_position.distance_to(area1.global_position)

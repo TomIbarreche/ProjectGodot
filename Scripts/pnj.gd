@@ -41,10 +41,7 @@ func updateAnimation():
 	
 	animator.play(animationString)
 	
-func _physics_process(delta):
+func _process(_delta):
 	updateVelocity()
 	move_and_slide()
 	updateAnimation()
-
-
-		

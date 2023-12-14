@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://dw1s215x6g2l0"]
+[gd_scene load_steps=5 format=3 uid="uid://dw1s215x6g2l0"]
 
 [ext_resource type="Script" path="res://Scenes/text box/text_box.gd" id="1_6hydq"]
 [ext_resource type="Texture2D" uid="uid://dgulh2aqn6mqe" path="res://assets/sprites/whiteBackground.png" id="2_145ca"]
 [ext_resource type="FontFile" uid="uid://d3mofnhujt1w4" path="res://assets/NormalFont.ttf" id="3_ssbx3"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0rqv7"]
+
 [node name="TextBox" type="MarginContainer"]
+material = SubResource("ShaderMaterial_0rqv7")
 script = ExtResource("1_6hydq")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]

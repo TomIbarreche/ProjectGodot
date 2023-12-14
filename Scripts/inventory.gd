@@ -27,3 +27,5 @@ func CheckForItemInInventory(itemName: String):
 			if slot.item.name == itemName:
 				return true
 	return false
+
+#func deleteItem()

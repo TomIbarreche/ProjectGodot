@@ -7,7 +7,7 @@ class_name Sign
 func _ready():
 	interaction_area.interact = Callable(self, "interact")
 	
-func interact(player: Player):
+func interact(_player: Player):
 	if !MessageManager.IsMessageOpen():
 		MessageManager.ShowMessage(message)
 	else:

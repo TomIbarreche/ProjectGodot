@@ -45,7 +45,6 @@ func _ready():
 	get_viewport().connect("gui_focus_changed",_on_focus_changed)
 	inventory.inventory_updated.connect(update)
 	update()
-	close()
 	
 func open():
 	for i in range(min(inventory.slots.size(), slots.size())):
@@ -55,13 +54,11 @@ func open():
 	visible = true
 	isOpen = true
 	inventory_open.emit()
-	get_tree().paused = true
 	
 func close():
 	visible = false
 	isOpen = false
 	inventory_close.emit()
-	get_tree().paused = false
 	
 
 func toggle_inventory():
@@ -71,7 +68,7 @@ func toggle_inventory():
 		open()
 
 func _input(event):
-	if event.is_action_pressed("toggle_inventory") && player.get_node("PlayerStateManager").get_node("FinalStateMachine").state.STATE_NAME != "UI":
+	if event.is_action_pressed("toggle_inventory") && player.get_node("FinalStateMachine").state.STATE_NAME != "UI":
 		toggle_inventory()
 		
 	if currentSlot and currentSlot.slot_is_occupy == true and isOpen:

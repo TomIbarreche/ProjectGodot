@@ -17,7 +17,7 @@ region_enabled = true
 region_rect = Rect2(157, 255, 7, 15)
 
 [node name="InteractionArea" type="Area2D" parent="."]
-collision_mask = 2
+collision_layer = 4
 script = ExtResource("2_0pkk1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]

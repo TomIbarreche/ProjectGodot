@@ -3,7 +3,6 @@ class_name InformationMessage
 
 @onready var label = $PanelContainer/Label
 func _ready():
-	
 	close()
 	
 func close():
@@ -12,3 +11,4 @@ func close():
 func open(message):
 	label.text = message
 	visible = true
+

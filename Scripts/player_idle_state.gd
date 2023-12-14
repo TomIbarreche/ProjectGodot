@@ -1,29 +1,32 @@
 class_name PlayerIdleState
 extends State
 
-@export var player: Player
-@export var animator: AnimationPlayer
-@export var speed=0
+@export var speed=300
 const STATE_NAME = "IDLE"
 signal is_moving
 signal is_interacting
 
 func _ready():
-	set_physics_process(false)
+#	set_physics_process(false)
+	pass
 	
 func _enter_state() -> void:
-	set_physics_process(true)
-	animator.play("idle")
+#	set_physics_process(true)
+	player_animator.play("idle")
+	is_active = true
+	pass
 	
 func _exit_state() -> void:
-	set_physics_process(false)
+	is_active = false
+	pass
 
-func _physics_process(delta):
-	handleInput()
-	if InteractionManager.is_interacting:
-		is_interacting.emit()
-	elif player.velocity != Vector2.ZERO:
-		is_moving.emit()
+func _process(_delta):
+	if is_active:
+		handleInput()
+		if player.is_interacting:
+			is_interacting.emit()
+		elif player.velocity != Vector2.ZERO:
+			is_moving.emit()
 
 func handleInput():
 	var movedir = Input.get_vector("walk_left","walk_right", "walk_up", "walk_down").normalized()
