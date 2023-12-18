@@ -30,7 +30,6 @@ func CloseMessage():
 	MessageClose.emit()
 
 func CloseChoiceMessage():
-	#await get_tree().create_timer(0.1).timeout
 	isChoiceMessageOpen = false
 	MessageClose.emit()	
 	

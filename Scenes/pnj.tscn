@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://3d8clqrivgka"]
+[gd_scene load_steps=11 format=3 uid="uid://3d8clqrivgka"]
 
 [ext_resource type="Script" path="res://Scripts/pnj.gd" id="1_slbx0"]
 [ext_resource type="Texture2D" uid="uid://c0pp3l5dgmcvn" path="res://assets/sprites/pnj.png" id="2_g7cxi"]
+[ext_resource type="PackedScene" uid="uid://0qxkysj46cne" path="res://Scenes/debuggable_area.tscn" id="3_lxl2m"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i3cc7"]
 radius = 7.0
@@ -119,3 +120,6 @@ shape = SubResource("CapsuleShape2D_i3cc7")
 libraries = {
 "": SubResource("AnimationLibrary_sqgga")
 }
+
+[node name="DebuggableArea" parent="." instance=ExtResource("3_lxl2m")]
+scale = Vector2(1.50739, 1.96762)

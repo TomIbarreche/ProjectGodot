@@ -10,12 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://6vdeud5cklcx" path="res://assets/sprites/door_left.png" id="8_yg1lc"]
 [ext_resource type="PackedScene" uid="uid://b4ssvypll7ghh" path="res://Scenes/interior_light.tscn" id="9_llgbu"]
 
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_04i1s"]
-polygon = PackedVector2Array(35, 109, 33, 109, 33, 172, 33, 172)
-
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_oyovp"]
-polygon = PackedVector2Array(129, 109, 130, 173, 128, 109)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hm2qk"]
 size = Vector2(12.818, 4.17261)
 
@@ -1289,7 +1283,7 @@ sources/3 = SubResource("TileSetAtlasSource_py5wa")
 pattern_0 = SubResource("TileMapPattern_gsrx2")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eilor"]
-size = Vector2(47, 20)
+size = Vector2(28, 21)
 
 [sub_resource type="Animation" id="Animation_eft5v"]
 length = 0.001
@@ -1369,6 +1363,12 @@ _data = {
 "doors_open": SubResource("Animation_rs76f")
 }
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_04i1s"]
+polygon = PackedVector2Array(35, 109, 33, 109, 33, 172, 33, 172)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_oyovp"]
+polygon = PackedVector2Array(129, 109, 130, 173, 128, 109)
+
 [node name="Bank" type="StaticBody2D"]
 z_index = 1
 y_sort_enabled = true
@@ -1376,21 +1376,7 @@ position = Vector2(0, 1)
 collision_layer = 2
 script = ExtResource("1_w0n8k")
 
-[node name="Lights" type="Node2D" parent="."]
-
-[node name="InteriorLight" parent="Lights" instance=ExtResource("9_llgbu")]
-position = Vector2(81, 120)
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Lights"]
-position = Vector2(0, 1)
-occluder = SubResource("OccluderPolygon2D_04i1s")
-
-[node name="LightOccluder2D2" type="LightOccluder2D" parent="Lights"]
-position = Vector2(0, 1)
-occluder = SubResource("OccluderPolygon2D_oyovp")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(81.5, 123.5)
 scale = Vector2(7.41143, -23.7262)
 shape = SubResource("RectangleShape2D_hm2qk")
@@ -1413,10 +1399,12 @@ layer_1/tile_data = PackedInt32Array(655361, 1572864, 8, 458757, 1703936, 20, 45
 
 [node name="InteractionArea" parent="." instance=ExtResource("6_5g1wt")]
 position = Vector2(81, 173)
+collision_mask = 9
 action_name = "Unlock"
+debug_function_name = "ENTER_ROOM"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
-position = Vector2(1, 0)
+position = Vector2(1, 5.5)
 shape = SubResource("RectangleShape2D_eilor")
 
 [node name="Door" type="Sprite2D" parent="."]
@@ -1436,3 +1424,25 @@ libraries = {
 
 [node name="ExteriorSpawn" type="Marker2D" parent="."]
 position = Vector2(81, 194)
+
+[node name="Lights" type="Node2D" parent="."]
+
+[node name="ExteriorLight" parent="Lights" groups=["exterior_light"] instance=ExtResource("9_llgbu")]
+z_index = 1
+position = Vector2(81, 120)
+
+[node name="PointLight2D" parent="Lights/ExteriorLight" index="1"]
+visible = false
+
+[node name="PointLight2D2" parent="Lights/ExteriorLight" index="2"]
+visible = false
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Lights"]
+position = Vector2(0, 1)
+occluder = SubResource("OccluderPolygon2D_04i1s")
+
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="Lights"]
+position = Vector2(0, 1)
+occluder = SubResource("OccluderPolygon2D_oyovp")
+
+[editable path="Lights/ExteriorLight"]

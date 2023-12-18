@@ -29,7 +29,3 @@ func toggle_pauseMenu():
 	else:
 		Open()
 		
-func _input(event):
-	if event.is_action_pressed("Pause"):
-		toggle_pauseMenu()
-

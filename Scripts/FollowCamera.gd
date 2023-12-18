@@ -1,6 +1,8 @@
 extends Camera2D
 	
-
+func _ready():
+	make_current()
+	
 func updateTileMapLimit(tileMap):
 	var mapRect = tileMap.get_used_rect() #REnvoi un rectangle avec la position et la taille de la tilemap
 	var tileSize = tileMap.cell_quadrant_size #Renvoi la taille d'une tile

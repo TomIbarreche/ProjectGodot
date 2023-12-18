@@ -1,5 +1,4 @@
 extends StaticBody2D
-class_name InteriorLight
 
 @onready var interaction_area: InteractionArea = $InteractionArea
 @onready var animator = $AnimationPlayer

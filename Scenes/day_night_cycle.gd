@@ -43,6 +43,13 @@ func _recalculate_time() -> void:
 	if past_minute != minute:
 		past_minute = minute
 		time_tick.emit(day, hour, minute)
-
+	
+	if hour >= 0 && hour < 6 && World.is_night_time != true:
+		World.is_night_time =true
+	elif hour >= 6 && hour < 19 && World.is_night_time != false:
+		World.is_night_time =false
+	elif hour >= 19 && hour <23 && World.is_night_time != true:
+		World.is_night_time =true
+			
 func _stop_day_light_cycle(is_player_in_building:bool)-> void:
 	player_in_building = is_player_in_building

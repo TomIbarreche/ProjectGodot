@@ -4,17 +4,15 @@ extends State
 const STATE_NAME = "MOVING"
 signal is_idle
 signal is_interacting
-
+signal is_debug_function_trigger
 func _ready():
 	pass
 	
 func _enter_state() -> void:
 	is_active = true
-	pass
 	
 func _exit_state() -> void:
 	is_active = false
-	pass
 	
 func _process(_delta):
 	if is_active:
@@ -23,6 +21,8 @@ func _process(_delta):
 			is_interacting.emit()
 		elif player.velocity == Vector2.ZERO:
 			is_idle.emit()
+		elif DebugManager.is_debug_function_triger:
+			is_debug_function_trigger.emit()
 		else:
 			handleInput()
 			updateAnimations()

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bks1pigylm37f"]
+
+[ext_resource type="FontFile" uid="uid://cl7oxrao185jj" path="res://Resources/subatomic.tsoonami.ttf" id="1_6qfpj"]
+[ext_resource type="Script" path="res://Scripts/debug_button.gd" id="2_4fyri"]
+
+[node name="DebugButton" type="CheckButton" groups=["debug_button"]]
+process_mode = 3
+offset_right = 44.0
+offset_bottom = 24.0
+theme_override_fonts/font = ExtResource("1_6qfpj")
+theme_override_font_sizes/font_size = 5
+text = "qdqzdqzd"
+script = ExtResource("2_4fyri")
+
+[connection signal="toggled" from="." to="." method="_on_toggled"]

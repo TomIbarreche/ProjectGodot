@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://d2ijsqy6tj1nf"]
+[gd_scene load_steps=23 format=3 uid="uid://d2ijsqy6tj1nf"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_147pu"]
 [ext_resource type="Resource" uid="uid://cnfg23ijcqglm" path="res://Inventory/playerInventory.tres" id="2_5gvf2"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://Scripts/player_state_manager.gd" id="8_d1alm"]
 [ext_resource type="Script" path="res://Scripts/player_UI_state.gd" id="10_wsab8"]
 [ext_resource type="FontFile" uid="uid://cl7oxrao185jj" path="res://Resources/subatomic.tsoonami.ttf" id="11_mag54"]
+[ext_resource type="Script" path="res://Scripts/player_debug_state.gd" id="12_tu1ow"]
 
 [sub_resource type="Animation" id="Animation_337n8"]
 length = 0.001
@@ -203,6 +204,9 @@ script = ExtResource("3_str44")
 
 [node name="PlayerUIState" type="Node" parent="FinalStateMachine/PlayerStateManager"]
 script = ExtResource("10_wsab8")
+
+[node name="PlayerDebugState" type="Node" parent="FinalStateMachine/PlayerStateManager"]
+script = ExtResource("12_tu1ow")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 occluder = SubResource("OccluderPolygon2D_5oxdn")

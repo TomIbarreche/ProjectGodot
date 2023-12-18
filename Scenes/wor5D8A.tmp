@@ -5232,8 +5232,9 @@ position = Vector2(76, -27)
 process_mode = 3
 position = Vector2(145, 252)
 
-[node name="FollowCamera" type="Camera2D" parent="Player" groups=["main_camera"]]
+[node name="FollowCamera" type="Camera2D" parent="Player"]
 position = Vector2(0, -2)
+enabled = false
 limit_left = 0
 limit_top = 0
 limit_right = 496
@@ -5307,9 +5308,7 @@ message = "Beware of the mad Cat"
 [node name="InteriorLight" parent="Objects" groups=["exterior_light"] instance=ExtResource("2_6tevp")]
 position = Vector2(111, 192)
 
-[node name="DebugCamera" type="Camera2D" parent="Objects" groups=["debug_camera"]]
-position = Vector2(4325, 2295)
-position_smoothing_enabled = true
+[node name="Camera2D" type="Camera2D" parent="Objects"]
 
 [connection signal="borderReached" from="Zone/TileMapNordOuest/BorderNO-N" to="Player/FollowCamera" method="_on_border_reached"]
 [connection signal="borderReached" from="Zone/TileMapNordOuest/BorderNO-O" to="Player/FollowCamera" method="_on_border_reached"]

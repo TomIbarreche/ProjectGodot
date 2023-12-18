@@ -1,0 +1,121 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2k1l6hih2e07"]
+
+[ext_resource type="Script" path="res://Scripts/debug_ui.gd" id="1_bi3u8"]
+[ext_resource type="Texture2D" uid="uid://dgulh2aqn6mqe" path="res://assets/sprites/whiteBackground.png" id="2_njujo"]
+[ext_resource type="FontFile" uid="uid://cl7oxrao185jj" path="res://Resources/subatomic.tsoonami.ttf" id="4_p67xe"]
+
+[node name="DebugUI" type="CanvasLayer" groups=["debug_ui"]]
+process_mode = 3
+script = ExtResource("1_bi3u8")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0, 0, 0, 1)
+offset_right = 385.0
+offset_bottom = 216.0
+texture = ExtResource("2_njujo")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control2" type="Control" parent="Control/PanelContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/PanelContainer/Control2"]
+layout_mode = 1
+anchors_preset = -1
+offset_right = 111.0
+offset_bottom = 215.0
+
+[node name="Frame" type="TextureRect" parent="Control/PanelContainer/Control2/VBoxContainer"]
+custom_minimum_size = Vector2(110, 140)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+expand_mode = 4
+stretch_mode = 5
+
+[node name="NameLabel" type="Label" parent="Control/PanelContainer/Control2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Control" type="Control" parent="Control/PanelContainer"]
+clip_contents = true
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/PanelContainer/Control"]
+clip_contents = true
+layout_mode = 0
+offset_left = 111.0
+offset_top = 1.0
+offset_right = 385.0
+offset_bottom = 215.0
+
+[node name="HBoxContainer" type="VBoxContainer" parent="Control/PanelContainer/Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/PanelContainer/Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("4_p67xe")
+theme_override_font_sizes/font_size = 10
+text = "Basic informations:"
+
+[node name="AgeLabel" type="Label" parent="Control/PanelContainer/Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("4_p67xe")
+theme_override_font_sizes/font_size = 10
+text = "   Age: "
+
+[node name="PobLabel" type="Label" parent="Control/PanelContainer/Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("4_p67xe")
+theme_override_font_sizes/font_size = 10
+text = "   Place of birth:"
+
+[node name="ThoughtLabel" type="Label" parent="Control/PanelContainer/Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("4_p67xe")
+theme_override_font_sizes/font_size = 10
+text = "   Last thought:"
+
+[node name="HBoxContainer2" type="VBoxContainer" parent="Control/PanelContainer/Control/VBoxContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="Control/PanelContainer/Control/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("4_p67xe")
+theme_override_font_sizes/font_size = 10
+text = "DEBUG Fonctions:"
+
+[node name="GridContainer" type="GridContainer" parent="Control/PanelContainer/Control/VBoxContainer/HBoxContainer2"]
+process_mode = 3
+layout_mode = 2
+size_flags_vertical = 3
+columns = 3
