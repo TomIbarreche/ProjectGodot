@@ -28,7 +28,6 @@ func _process(_delta):
 		elif player.velocity != Vector2.ZERO:
 			is_moving.emit()
 		elif DebugManager.is_debug_function_triger:
-			print("IDLE")
 			is_debug_function_trigger.emit()
 
 func handleInput():

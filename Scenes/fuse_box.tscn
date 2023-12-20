@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://Scripts/interaction_area.gd" id="2_g3mag"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r85dd"]
+size = Vector2(46, 46)
 
 [node name="FuseBox" type="Node2D"]
 

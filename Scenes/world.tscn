@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://qnvix6ibdco4"]
+[gd_scene load_steps=49 format=3 uid="uid://qnvix6ibdco4"]
 
 [ext_resource type="Script" path="res://Scripts/world.gd" id="1_irlc8"]
 [ext_resource type="PackedScene" uid="uid://d2ijsqy6tj1nf" path="res://Scenes/player.tscn" id="1_m6fr8"]
@@ -22,6 +22,7 @@
 [ext_resource type="Script" path="res://Scripts/interaction_area.gd" id="11_mt4ni"]
 [ext_resource type="PackedScene" uid="uid://boex4716mlg1g" path="res://Scenes/fuse.tscn" id="13_b8cn8"]
 [ext_resource type="PackedScene" uid="uid://qmwljpnkgkcu" path="res://Scenes/InformationMessage.tscn" id="20_narep"]
+[ext_resource type="Texture2D" uid="uid://brdiseki8ke35" path="res://assets/sprites/GoldCoin.png" id="20_on4x1"]
 [ext_resource type="Script" path="res://Scenes/day_night_cycle.gd" id="21_17jqv"]
 [ext_resource type="PackedScene" uid="uid://drc2bs1mhlugv" path="res://Scenes/ChoiceMessage.tscn" id="21_vorb3"]
 [ext_resource type="Texture2D" uid="uid://c0pp3l5dgmcvn" path="res://assets/sprites/pnj.png" id="22_3323g"]
@@ -4946,9 +4947,14 @@ sources/4 = SubResource("TileSetAtlasSource_26j75")
 sources/7 = SubResource("TileSetAtlasSource_1n38f")
 sources/3 = SubResource("TileSetScenesCollectionSource_ixt8i")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_y17jn"]
-atlas = ExtResource("22_3323g")
-region = Rect2(0, 0, 16, 16)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_30r1j"]
+size = Vector2(37, 49)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8nn06"]
+size = Vector2(15, 49)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_173ms"]
+size = Vector2(38, 50)
 
 [node name="World" type="Node2D"]
 y_sort_enabled = true
@@ -4956,6 +4962,7 @@ position = Vector2(0, -3)
 script = ExtResource("1_irlc8")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 color = Color(0.133333, 0.14902, 0.258824, 1)
 script = ExtResource("21_17jqv")
 gradient = ExtResource("22_f2uws")
@@ -4999,26 +5006,46 @@ layer_4/y_sort_origin = 0
 layer_4/z_index = 0
 layer_4/tile_data = PackedInt32Array(393249, 3, 65536, 1179652, 3, 65536, 1179655, 3, 131072, 1179658, 3, 327680, 1179661, 3, 524288, 1179653, 3, 65536, 1179656, 3, 131072, 1179659, 3, 327680)
 
-[node name="BorderNO-N" parent="Zone/TileMapNordOuest" node_paths=PackedStringArray("destinationTileMap", "spawn") instance=ExtResource("4_38qu4")]
-position = Vector2(483, 264)
-scale = Vector2(1.24606, 6.4692)
+[node name="BorderDetector3" parent="Zone/TileMapNordOuest" node_paths=PackedStringArray("destinationTileMap", "spawn") instance=ExtResource("4_38qu4")]
+position = Vector2(484, 263)
+rotation = 3.14159
 destinationTileMap = NodePath("../../TileMapNord")
-spawn = NodePath("../SpawnNO-N")
+spawn = NodePath("Spawn NO-N")
 
-[node name="CollisionShape2D" parent="Zone/TileMapNordOuest/BorderNO-N/InteractionArea" index="0"]
-position = Vector2(0, 7.62784)
+[node name="InteractionArea" parent="Zone/TileMapNordOuest/BorderDetector3" index="0"]
+action_name = "Leave"
+debug_function_name = [{
+"ACTIVE": false,
+"DIRECTION": ["RIGHT", "UP"],
+"FUNCTION_NAME": "LEAVE_CITY"
+}]
 
-[node name="BorderNO-O" parent="Zone/TileMapNordOuest" node_paths=PackedStringArray("destinationTileMap", "spawn") instance=ExtResource("4_38qu4")]
-position = Vector2(233, 485)
-scale = Vector2(4.40202, 1.02608)
-destinationTileMap = NodePath("../../TileMapOuest")
-spawn = NodePath("../SpawnNO-O")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Zone/TileMapNordOuest/BorderDetector3/InteractionArea" index="0"]
+position = Vector2(8, 1)
+shape = SubResource("RectangleShape2D_30r1j")
 
-[node name="SpawnNO-N" type="Marker2D" parent="Zone/TileMapNordOuest"]
-position = Vector2(533, 263)
+[node name="StaticBody2D" parent="Zone/TileMapNordOuest/BorderDetector3" index="1"]
+position = Vector2(1, 0)
 
-[node name="SpawnNO-O" type="Marker2D" parent="Zone/TileMapNordOuest"]
-position = Vector2(236, 535)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Zone/TileMapNordOuest/BorderDetector3/StaticBody2D" index="0"]
+position = Vector2(-4, 0)
+shape = SubResource("RectangleShape2D_8nn06")
+
+[node name="DebuggableArea" parent="Zone/TileMapNordOuest/BorderDetector3" index="2"]
+NAME = "North West city gate"
+frame = ExtResource("20_on4x1")
+debug_functions_dict = [{
+"ACTIVE": false,
+"DIRECTION": ["Rdzdz"],
+"FUNCTION_NAME": "LEAVE_CITY"
+}]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Zone/TileMapNordOuest/BorderDetector3/DebuggableArea" index="0"]
+position = Vector2(8, 0)
+shape = SubResource("RectangleShape2D_173ms")
+
+[node name="Spawn NO-N" type="Marker2D" parent="Zone/TileMapNordOuest/BorderDetector3"]
+position = Vector2(-68, 1)
 
 [node name="TileMapNord" type="TileMap" parent="Zone"]
 y_sort_enabled = true
@@ -5049,20 +5076,42 @@ layer_3/y_sort_origin = 0
 layer_3/z_index = 0
 layer_3/tile_data = PackedInt32Array(61, 458753, 12, 65597, 458753, 12, 131133, 458753, 12, 196669, 458753, 12, 262205, 458753, 12, 327741, 458753, 12, 393277, 458753, 12, 458813, 458753, 12, 524349, 458753, 12, 589885, 458753, 12, 655421, 458753, 12, 720957, 458753, 12, 786493, 458753, 12, 1048637, 458753, 12, 1114173, 458753, 12, 1179709, 458753, 12, 1245245, 458753, 12, 1310781, 458753, 12, 1376317, 458753, 12, 1441853, 458753, 12, 1507389, 458753, 12, 1572925, 458753, 12, 1638461, 458753, 12, 1703997, 458753, 12, 1769533, 458753, 12, 1835069, 458753, 12, 1900605, 458753, 12, 1966141, 458753, 12, 1966111, 458753, 12, 1966112, 458753, 12, 1966113, 458753, 12, 1966114, 458753, 12, 1966115, 458753, 12, 1966116, 458753, 12, 1966117, 458753, 12, 1966118, 458753, 12, 1966119, 458753, 12, 1966120, 458753, 12, 1966121, 458753, 12, 1966122, 458753, 12, 1966123, 458753, 12, 1966124, 458753, 12, 1966128, 458753, 12, 1966129, 458753, 12, 1966130, 458753, 12, 1966131, 458753, 12, 1966132, 458753, 12, 1966133, 458753, 12, 1966134, 458753, 12, 1966135, 458753, 12, 1966136, 458753, 12, 1966137, 458753, 12, 1966138, 458753, 12, 1966139, 458753, 12, 1966140, 458753, 12, 31, 458753, 12, 65567, 458753, 12, 131103, 458753, 12, 196639, 458753, 12, 262175, 458753, 12, 327711, 458753, 12, 393247, 458753, 12, 458783, 458753, 12, 524319, 458753, 12, 589855, 458753, 12, 655391, 458753, 12, 720927, 458753, 12, 786463, 458753, 12, 851999, 458753, 12, 917535, 458753, 12, 1179679, 458753, 12, 1245215, 458753, 12, 1310751, 458753, 12, 1376287, 458753, 12, 1441823, 458753, 12, 1507359, 458753, 12, 1572895, 458753, 12, 1638431, 458753, 12, 1703967, 458753, 12, 1769503, 458753, 12, 1835039, 458753, 12, 1900575, 458753, 12, 32, 458753, 12, 33, 458753, 12, 34, 458753, 12, 35, 458753, 12, 36, 458753, 12, 37, 458753, 12, 38, 458753, 12, 39, 458753, 12, 40, 458753, 12, 41, 458753, 12, 42, 458753, 12, 43, 458753, 12, 44, 458753, 12, 45, 458753, 12, 46, 458753, 12, 47, 458753, 12, 48, 458753, 12, 49, 458753, 12, 50, 458753, 12, 51, 458753, 12, 52, 458753, 12, 53, 458753, 12, 54, 458753, 12, 55, 458753, 12, 56, 458753, 12, 57, 458753, 12, 58, 458753, 12, 59, 458753, 12, 60, 458753, 12)
 
-[node name="BorderN-NO" parent="Zone/TileMapNord" node_paths=PackedStringArray("destinationTileMap", "spawn") instance=ExtResource("4_38qu4")]
-position = Vector2(508, 264)
-scale = Vector2(1.24606, 6.4692)
+[node name="BorderDetector2" parent="Zone/TileMapNord" node_paths=PackedStringArray("destinationTileMap", "spawn") instance=ExtResource("4_38qu4")]
+position = Vector2(507, 263)
 destinationTileMap = NodePath("../../TileMapNordOuest")
-spawn = NodePath("../SpawnN-NO")
+spawn = NodePath("Spawn N-NO")
 
-[node name="SpawnN-NO" type="Marker2D" parent="Zone/TileMapNord"]
-position = Vector2(452, 267)
+[node name="InteractionArea" parent="Zone/TileMapNord/BorderDetector2" index="0"]
+action_name = "Enter"
+debug_function_name = [{
+"ACTIVE": false,
+"DIRECTION": ["LEFT"],
+"FUNCTION_NAME": "ENTER_CITY"
+}]
 
-[node name="SpawnN-NE" type="Marker2D" parent="Zone/TileMapNord"]
-position = Vector2(1041, 227)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Zone/TileMapNord/BorderDetector2/InteractionArea" index="0"]
+position = Vector2(8, 1)
+shape = SubResource("RectangleShape2D_30r1j")
 
-[node name="SpawnN-C" type="Marker2D" parent="Zone/TileMapNord"]
-position = Vector2(744, 567)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Zone/TileMapNord/BorderDetector2/StaticBody2D" index="0"]
+position = Vector2(-4, 0)
+shape = SubResource("RectangleShape2D_8nn06")
+
+[node name="DebuggableArea" parent="Zone/TileMapNord/BorderDetector2" index="2"]
+NAME = "North East coty gate"
+frame = ExtResource("20_on4x1")
+debug_functions_dict = [{
+"ACTIVE": false,
+"DIRECTION": ["LEFT"],
+"FUNCTION_NAME": "ENTER_CITY"
+}]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Zone/TileMapNord/BorderDetector2/DebuggableArea" index="0"]
+position = Vector2(8, 0)
+shape = SubResource("RectangleShape2D_173ms")
+
+[node name="Spawn N-NO" type="Marker2D" parent="Zone/TileMapNord/BorderDetector2"]
+position = Vector2(-67, -2)
 
 [node name="TileMapNordEst" type="TileMap" parent="Zone"]
 y_sort_enabled = true
@@ -5210,24 +5259,6 @@ position = Vector2(2290, 226)
 exterior_spawn = NodePath("../Bank/ExteriorSpawn")
 exterior_tilemap = NodePath("../../../Zone/TileMapNordOuest")
 
-[node name="PNJ" parent="." node_paths=PackedStringArray("endPoint") instance=ExtResource("10_vs5nv")]
-z_index = 1
-position = Vector2(219, 448)
-endPoint = NodePath("Marker2D")
-NAME = "Igmar Sharp"
-age = "23"
-pob = "Locria"
-thought = Array[String](["Where the fuck am I ?", "Tomorrow is just another day"])
-frame = SubResource("AtlasTexture_y17jn")
-debug_functions_dict = {
-"ENTER_ROOM": false,
-"LEAVE_ROOM": false
-}
-lines = Array[String](["I think Igmar have flee the city..", "He didnt seems quite well the last time I see him..", "I dont understand why the Alterate have choose him for the prophecy..", "I hope he will return or will all gonna die!!", "Sights...."])
-
-[node name="Marker2D" type="Marker2D" parent="PNJ"]
-position = Vector2(76, -27)
-
 [node name="Player" parent="." instance=ExtResource("1_m6fr8")]
 process_mode = 3
 position = Vector2(145, 252)
@@ -5277,12 +5308,26 @@ visible = false
 
 [node name="PNJ2" parent="." node_paths=PackedStringArray("endPoint") instance=ExtResource("10_vs5nv")]
 z_index = 1
-position = Vector2(83, 401)
+position = Vector2(212, 262)
 endPoint = NodePath("Marker2D")
 lines = Array[String](["Good morning Myxolicent..", "How are you today ??", "Farewell.."])
 
+[node name="DebuggableArea" parent="PNJ2" index="3"]
+NAME = "Billy Flat"
+age = "50"
+pob = "Sirka"
+thought = Array[String](["Coin"])
+frame = ExtResource("22_3323g")
+debug_functions_dict = [{
+"ACTIVE": false,
+"FUNCTION_NAME": "LEAVE_CITY"
+}, {
+"ACTIVE": false,
+"FUNCTION_NAME": "ENTER_CITY"
+}]
+
 [node name="Marker2D" type="Marker2D" parent="PNJ2"]
-position = Vector2(53, -39)
+position = Vector2(366, -3)
 
 [node name="Dialogue_Layer" type="CanvasLayer" parent="." groups=["UI"]]
 follow_viewport_enabled = true
@@ -5311,16 +5356,15 @@ position = Vector2(111, 192)
 position = Vector2(4325, 2295)
 position_smoothing_enabled = true
 
-[connection signal="borderReached" from="Zone/TileMapNordOuest/BorderNO-N" to="Player/FollowCamera" method="_on_border_reached"]
-[connection signal="borderReached" from="Zone/TileMapNordOuest/BorderNO-O" to="Player/FollowCamera" method="_on_border_reached"]
-[connection signal="borderReached" from="Zone/TileMapNord/BorderN-NO" to="Player/FollowCamera" method="_on_border_reached"]
 [connection signal="enterBank" from="Building/Bank/Bank" to="Player/FollowCamera" method="_on_bank_enter_bank"]
 [connection signal="exitBank" from="Building/Bank/BankInterior" to="Player/FollowCamera" method="_on_bank_interior_exit_bank"]
 [connection signal="pressed" from="UI_Layer/PauseMenu/VBoxContainer/SaveBtn" to="." method="_on_save_btn_pressed"]
 [connection signal="pressed" from="UI_Layer/PauseMenu/VBoxContainer/LoadBtn" to="." method="_on_load_btn_pressed"]
 [connection signal="activate_fuse_box" from="Objects/FuseBox" to="Building/Bank/BankInterior" method="_on_fuse_box_activate_fuse_box"]
 
-[editable path="Zone/TileMapNordOuest/BorderNO-N"]
+[editable path="Zone/TileMapNordOuest/BorderDetector3"]
+[editable path="Zone/TileMapNord/BorderDetector2"]
 [editable path="Player"]
 [editable path="UI_Layer/DebugUI"]
 [editable path="UI_Layer/PauseMenu"]
+[editable path="PNJ2"]

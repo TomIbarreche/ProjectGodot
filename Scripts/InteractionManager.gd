@@ -3,7 +3,6 @@ extends Node2D
 @onready var player = get_tree().get_first_node_in_group("player")
 
 signal area_near(area)
-signal debug_area_near(debuggable_area)
 
 var active_interact_areas: Array[Node]= []
 var active_debug_areas: Array[Node]= []

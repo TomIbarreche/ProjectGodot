@@ -12,4 +12,4 @@ theme_override_font_sizes/font_size = 5
 text = "qdqzdqzd"
 script = ExtResource("2_4fyri")
 
-[connection signal="toggled" from="." to="." method="_on_toggled"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]

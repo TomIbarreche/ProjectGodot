@@ -4,19 +4,24 @@ extends Node
 @onready var debug_camera: Camera2D = get_tree().get_first_node_in_group("debug_camera")
 @onready var main_camera: Camera2D = get_tree().get_first_node_in_group("main_camera")
 
-
-var is_debuging: bool = false
-var registered_debuggable_functions_list: Array[String] = []
-var current_pnj: PNJ
+var current_debug_area: DebuggableArea
 var is_debug_function_triger: bool = false
+var is_debuging = false
+const DEBUG_FUNCTION_ACTIVE_STRING = "ACTIVE"
+const DEBUG_FUNCTION_DIRECTION_STRING = "DIRECTION"
+
 
 func toggle_visibility(value: bool):
 	debugUI.visible = value
 
 func gather_pnj_informations(pnj: PNJ, current_thought: String) -> void:
-	debugUI._fill_pnj_informations(pnj, current_thought)
-	current_pnj = pnj
+	debugUI._fill_pnj_informations(pnj.debug_area, current_thought)
+	current_debug_area = pnj.debug_area
 
+func gather_debuggable_object_information(object: Node)-> void:
+	debugUI._fill_object_informations(object.debug_area)
+	current_debug_area = object.debug_area
+	
 func handle_debuggable_function(debug_function_button: Button, is_debug_function_button_on: bool) -> void:
 	if is_debug_function_button_on:
 		register_debuggable_function(debug_function_button.text)
@@ -24,20 +29,44 @@ func handle_debuggable_function(debug_function_button: Button, is_debug_function
 		unregister_debuggable_function(debug_function_button.text)
 		
 func register_debuggable_function(debug_function_name) -> void:
-	registered_debuggable_functions_list.push_back(debug_function_name)
-	current_pnj.debug_functions_dict[debug_function_name] = true
+	for debug_func in current_debug_area.debug_functions_dict:
+		if debug_func["FUNCTION_NAME"] == debug_function_name:
+			debug_func["ACTIVE"] = true
 	
 func unregister_debuggable_function(debug_function_name) -> void:
-	current_pnj.debug_functions_dict[debug_function_name] = false
+	for debug_func in current_debug_area.debug_functions_dict:
+		if debug_func["FUNCTION_NAME"] == debug_function_name:
+			debug_func["ACTIVE"] = false
 	
-func check_for_debuggable_functions_in_PNJ(pnj: PNJ, debug_function_name: String):
-	for debug_function in pnj.debug_functions_dict:
-		if debug_function == debug_function_name && pnj.debug_functions_dict[debug_function] == true:
-			current_pnj = pnj
-			move_camera_for_debug()
-		
+func check_for_debuggable_functions(interaction_area: InteractionArea, pnj: PNJ):
+	for debug_function in pnj.debug_area.debug_functions_dict:
+		if debug_function["FUNCTION_NAME"] == interaction_area.debug_function_name[0]["FUNCTION_NAME"]:
+			if debug_function[DEBUG_FUNCTION_ACTIVE_STRING] == true:
+				for direction in interaction_area.debug_function_name[0]["DIRECTION"]:
+					match direction:
+						"RIGHT":
+							if pnj.eye_direction.target_position.x > 0:
+								print("Coming from right")
+								current_debug_area = pnj.debug_area
+								move_camera_for_debug()
+								return 
+						"UP":
+							print("u^p")
+						"LEFT":
+							if pnj.eye_direction.target_position.x < 0:
+								print("Coming from left")
+								current_debug_area = pnj.debug_area
+								move_camera_for_debug()
+								return 
+#	for debug_function in interaction_area.get_parent().debug_area.debug_functions_dict:
+##		if debug_function == debug_function_name && interaction_area.get_parent().debug_area.debug_functions_dict[debug_function] == true:
+##			current_debug_area = interaction_area.get_parent().debug_area
+##			move_camera_for_debug()
+##			return
+	pass
+			
 func move_camera_for_debug():
-	debug_camera.global_position = current_pnj.global_position
+	debug_camera.global_position = current_debug_area.global_position
 	debug_camera.make_current()
 	is_debug_function_triger = true
 

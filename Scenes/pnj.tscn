@@ -123,3 +123,5 @@ libraries = {
 
 [node name="DebuggableArea" parent="." instance=ExtResource("3_lxl2m")]
 scale = Vector2(1.50739, 1.96762)
+
+[node name="RayCast2D" type="RayCast2D" parent="."]

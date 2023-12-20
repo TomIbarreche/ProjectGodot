@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bvmb6hivxowpg"]
+[gd_scene load_steps=25 format=3 uid="uid://bvmb6hivxowpg"]
 
 [ext_resource type="Script" path="res://Scripts/bank.gd" id="1_w0n8k"]
 [ext_resource type="Texture2D" uid="uid://j4byxpdfy4kk" path="res://assets/tilesets/Roguelike Modern City pack/Spritesheet/roguelikeCity_magenta.png" id="1_xtlxe"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cftg13rexudjb" path="res://assets/sprites/door.png" id="7_xox1v"]
 [ext_resource type="Texture2D" uid="uid://6vdeud5cklcx" path="res://assets/sprites/door_left.png" id="8_yg1lc"]
 [ext_resource type="PackedScene" uid="uid://b4ssvypll7ghh" path="res://Scenes/interior_light.tscn" id="9_llgbu"]
+[ext_resource type="PackedScene" uid="uid://0qxkysj46cne" path="res://Scenes/debuggable_area.tscn" id="10_s7ves"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hm2qk"]
 size = Vector2(12.818, 4.17261)
@@ -1401,7 +1402,7 @@ layer_1/tile_data = PackedInt32Array(655361, 1572864, 8, 458757, 1703936, 20, 45
 position = Vector2(81, 173)
 collision_mask = 9
 action_name = "Unlock"
-debug_function_name = "ENTER_ROOM"
+debug_function_name = []
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 position = Vector2(1, 5.5)
@@ -1444,5 +1445,11 @@ occluder = SubResource("OccluderPolygon2D_04i1s")
 [node name="LightOccluder2D2" type="LightOccluder2D" parent="Lights"]
 position = Vector2(0, 1)
 occluder = SubResource("OccluderPolygon2D_oyovp")
+
+[node name="DebuggableArea" parent="." instance=ExtResource("10_s7ves")]
+position = Vector2(81, 176)
+scale = Vector2(2.76, 2.20817)
+NAME = "Bank doors"
+frame = ExtResource("7_xox1v")
 
 [editable path="Lights/ExteriorLight"]

@@ -1,27 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://khj0qv7eybrc"]
+[gd_scene load_steps=4 format=3 uid="uid://khj0qv7eybrc"]
 
 [ext_resource type="Script" path="res://Scripts/border_detector.gd" id="1_jmf57"]
 [ext_resource type="PackedScene" uid="uid://lc76mpacso37" path="res://interaction/interaction area/interaction_area.tscn" id="2_lvfo8"]
+[ext_resource type="Script" path="res://Scripts/debuggable_area.gd" id="3_q7gcs"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vtn1r"]
-size = Vector2(32, 20)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_87ys0"]
-size = Vector2(13, 11)
-
-[node name="BorderDetector" type="Node2D" groups=["Interactable"]]
+[node name="BorderDetector" type="Node2D" groups=["Interactable", "border"]]
 position = Vector2(1, -1)
 script = ExtResource("1_jmf57")
 
 [node name="InteractionArea" parent="." instance=ExtResource("2_lvfo8")]
+collision_mask = 9
 action_name = "enter"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
-shape = SubResource("RectangleShape2D_vtn1r")
-
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-collision_layer = 2
+collision_layer = 16
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(0.5, 0.5)
-shape = SubResource("RectangleShape2D_87ys0")
+[node name="DebuggableArea" type="Area2D" parent="."]
+collision_layer = 4
+script = ExtResource("3_q7gcs")
+
+[connection signal="body_entered" from="DebuggableArea" to="DebuggableArea" method="_on_body_entered"]
+[connection signal="body_exited" from="DebuggableArea" to="DebuggableArea" method="_on_body_exited"]

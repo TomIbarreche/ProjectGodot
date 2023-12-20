@@ -1,7 +1,11 @@
 extends Camera2D
 	
+@onready var borders: Array[Node] = get_tree().get_nodes_in_group("border")
+
 func _ready():
 	make_current()
+	for border in borders:
+		border.border_reached.connect(_on_border_reached)
 	
 func updateTileMapLimit(tileMap):
 	var mapRect = tileMap.get_used_rect() #REnvoi un rectangle avec la position et la taille de la tilemap
@@ -10,7 +14,6 @@ func updateTileMapLimit(tileMap):
 	limit_right = limit_left + mapRect.size.x * tileSize
 	limit_top = mapRect.position.y * tileSize
 	limit_bottom = limit_top + mapRect.size.y * tileSize
-
 
 func updatePlayerPosition(spawn, body):
 	body.position.x = spawn.global_position.x
