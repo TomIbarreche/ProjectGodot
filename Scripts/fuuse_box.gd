@@ -1,5 +1,6 @@
-extends Node
-class_name FuseBox
+extends Node2D
+class_name Fuse_Box
+
 @onready var interaction_area: InteractionArea = $InteractionArea
 @onready var inventory = get_tree().get_first_node_in_group("inventory")
 var isUnplug = true

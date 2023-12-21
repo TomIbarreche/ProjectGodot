@@ -1371,7 +1371,6 @@ polygon = PackedVector2Array(35, 109, 33, 109, 33, 172, 33, 172)
 polygon = PackedVector2Array(129, 109, 130, 173, 128, 109)
 
 [node name="Bank" type="StaticBody2D"]
-z_index = 1
 y_sort_enabled = true
 position = Vector2(0, 1)
 collision_layer = 2
@@ -1402,7 +1401,11 @@ layer_1/tile_data = PackedInt32Array(655361, 1572864, 8, 458757, 1703936, 20, 45
 position = Vector2(81, 173)
 collision_mask = 9
 action_name = "Unlock"
-debug_function_name = []
+debug_function_name = {
+"ACTIVE": false,
+"DIRECTION": ["RIGHT", "LEFT", "DOWN"],
+"FUNCTION_NAME": "ENTER_BANK"
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 position = Vector2(1, 5.5)

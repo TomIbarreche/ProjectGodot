@@ -1,14 +1,15 @@
 extends Node
 
 @onready var debugUI: DebugUI = get_tree().get_first_node_in_group("debug_ui")
-@onready var debug_camera: Camera2D = get_tree().get_first_node_in_group("debug_camera")
 @onready var main_camera: Camera2D = get_tree().get_first_node_in_group("main_camera")
-
+@onready var debug_camera_scene = preload("res://Scenes/debug_camera.tscn")
+var debug_camera: Camera2D
 var current_debug_area: DebuggableArea
 var is_debug_function_triger: bool = false
 var is_debuging = false
 const DEBUG_FUNCTION_ACTIVE_STRING = "ACTIVE"
 const DEBUG_FUNCTION_DIRECTION_STRING = "DIRECTION"
+const DEBUG_FUNCTION_NAME_STRING = "FUNCTION_NAME"
 
 
 func toggle_visibility(value: bool):
@@ -30,19 +31,19 @@ func handle_debuggable_function(debug_function_button: Button, is_debug_function
 		
 func register_debuggable_function(debug_function_name) -> void:
 	for debug_func in current_debug_area.debug_functions_dict:
-		if debug_func["FUNCTION_NAME"] == debug_function_name:
-			debug_func["ACTIVE"] = true
+		if debug_func[DEBUG_FUNCTION_NAME_STRING] == debug_function_name:
+			debug_func[DEBUG_FUNCTION_ACTIVE_STRING] = true
 	
 func unregister_debuggable_function(debug_function_name) -> void:
 	for debug_func in current_debug_area.debug_functions_dict:
-		if debug_func["FUNCTION_NAME"] == debug_function_name:
-			debug_func["ACTIVE"] = false
+		if debug_func[DEBUG_FUNCTION_NAME_STRING] == debug_function_name:
+			debug_func[DEBUG_FUNCTION_ACTIVE_STRING] = false
 	
 func check_for_debuggable_functions(interaction_area: InteractionArea, pnj: PNJ):
 	for debug_function in pnj.debug_area.debug_functions_dict:
-		if debug_function["FUNCTION_NAME"] == interaction_area.debug_function_name[0]["FUNCTION_NAME"]:
+		if debug_function[DEBUG_FUNCTION_NAME_STRING] == interaction_area.debug_function_name[DEBUG_FUNCTION_NAME_STRING]:
 			if debug_function[DEBUG_FUNCTION_ACTIVE_STRING] == true:
-				for direction in interaction_area.debug_function_name[0]["DIRECTION"]:
+				for direction in interaction_area.debug_function_name[DEBUG_FUNCTION_DIRECTION_STRING]:
 					match direction:
 						"RIGHT":
 							if pnj.eye_direction.target_position.x > 0:
@@ -51,25 +52,41 @@ func check_for_debuggable_functions(interaction_area: InteractionArea, pnj: PNJ)
 								move_camera_for_debug()
 								return 
 						"UP":
-							print("u^p")
+							return
 						"LEFT":
 							if pnj.eye_direction.target_position.x < 0:
 								print("Coming from left")
 								current_debug_area = pnj.debug_area
 								move_camera_for_debug()
 								return 
-#	for debug_function in interaction_area.get_parent().debug_area.debug_functions_dict:
-##		if debug_function == debug_function_name && interaction_area.get_parent().debug_area.debug_functions_dict[debug_function] == true:
-##			current_debug_area = interaction_area.get_parent().debug_area
-##			move_camera_for_debug()
-##			return
-	pass
-			
+	for debug_function in interaction_area.get_parent().debug_area.debug_functions_dict:
+		if debug_function[DEBUG_FUNCTION_NAME_STRING] == interaction_area.debug_function_name[DEBUG_FUNCTION_NAME_STRING]:
+			if debug_function[DEBUG_FUNCTION_ACTIVE_STRING] == true:
+				for direction in interaction_area.debug_function_name[DEBUG_FUNCTION_DIRECTION_STRING]:
+					match direction:
+						"RIGHT":
+							if pnj.eye_direction.target_position.x > 0:
+								print("Coming from right")
+								current_debug_area = pnj.debug_area
+								move_camera_for_debug()
+								return 
+						"UP":
+							return
+						"DOWN":
+							return
+						"LEFT":
+							if pnj.eye_direction.target_position.x < 0:
+								print("Coming from left")
+								current_debug_area = pnj.debug_area
+								move_camera_for_debug()
+								return 
 func move_camera_for_debug():
-	debug_camera.global_position = current_debug_area.global_position
+	debug_camera = debug_camera_scene.instantiate()
+	current_debug_area.get_parent().add_child(debug_camera)
 	debug_camera.make_current()
 	is_debug_function_triger = true
 
 func leave_debug_mode():
+	debug_camera.queue_free()
 	is_debug_function_triger = false
 	main_camera.make_current()

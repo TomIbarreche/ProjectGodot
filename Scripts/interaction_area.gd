@@ -3,7 +3,7 @@ extends Area2D
 class_name InteractionArea
 
 @export var action_name: String = "interact"
-@export var debug_function_name = []
+@export var debug_function_name = {}
 
 var interact: Callable = func():
 	pass

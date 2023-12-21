@@ -1,12 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://t3nkuos81hgx"]
+[gd_scene load_steps=6 format=3 uid="uid://t3nkuos81hgx"]
 
 [ext_resource type="Texture2D" uid="uid://j4byxpdfy4kk" path="res://assets/tilesets/Roguelike Modern City pack/Spritesheet/roguelikeCity_magenta.png" id="1_2q6k5"]
+[ext_resource type="Script" path="res://Scripts/fuse_box.gd" id="1_h5pwi"]
 [ext_resource type="Script" path="res://Scripts/interaction_area.gd" id="2_g3mag"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r85dd"]
 size = Vector2(46, 46)
 
-[node name="FuseBox" type="Node2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xnhl4"]
+radius = 4.0
+height = 12.0
+
+[node name="FuseBox" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 9
+script = ExtResource("1_h5pwi")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_2q6k5")
@@ -20,6 +28,10 @@ action_name = "Interact"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 shape = SubResource("RectangleShape2D_r85dd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_xnhl4")
 
 [connection signal="body_entered" from="InteractionArea" to="InteractionArea" method="_on_body_entered"]
 [connection signal="body_exited" from="InteractionArea" to="InteractionArea" method="_on_body_exited"]

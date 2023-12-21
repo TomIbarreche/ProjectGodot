@@ -34,6 +34,7 @@ func _on_interact(Pplayer):
 	else:
 		animator.play("doors_open")
 		await $AnimationPlayer.animation_finished
+		await TransitionLayer.play_fade_to_black()
 		enterBank.emit(Pplayer, bank_interior.spawn, bank_interior.interior)
 		animator.play("doors_close")
 

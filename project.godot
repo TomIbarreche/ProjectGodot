@@ -24,6 +24,7 @@ MessageManager="*res://message/MessageManager.gd"
 World="*res://Scripts/world.gd"
 LightManager="*res://Scripts/light_manager.gd"
 DebugManager="*res://Scripts/DebugManager.gd"
+TransitionLayer="*res://Scenes/transition_layer.tscn"
 
 [display]
 

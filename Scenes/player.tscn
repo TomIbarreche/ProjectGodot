@@ -128,7 +128,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_br6y1"]
-size = Vector2(14, 3)
+size = Vector2(14, 6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1pcsl"]
 size = Vector2(14, 13)
@@ -138,7 +138,6 @@ cull_mode = 1
 polygon = PackedVector2Array(-4, -1, -4, 0, 3, 0, 3, -1)
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
-z_index = 1
 texture_filter = 1
 position = Vector2(123, 61)
 collision_mask = 23
@@ -160,7 +159,7 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -1.5)
+position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_br6y1")
 debug_color = Color(0.372549, 0.541176, 0.780392, 0.419608)
 

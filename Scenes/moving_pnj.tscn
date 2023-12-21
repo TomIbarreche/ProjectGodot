@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dr0x8dlgnqkox"]
+
+[ext_resource type="PackedScene" uid="uid://3d8clqrivgka" path="res://Scenes/pnj.tscn" id="1_ckr7p"]
+
+[node name="MovingPNJ" type="PathFollow2D"]
+
+[node name="PNJ" parent="." instance=ExtResource("1_ckr7p")]

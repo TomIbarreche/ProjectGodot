@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://cn8w2uctrk2pt"]
+
+[ext_resource type="Script" path="res://Scripts/fuuse_box.gd" id="1_presc"]
+[ext_resource type="Texture2D" uid="uid://j4byxpdfy4kk" path="res://assets/tilesets/Roguelike Modern City pack/Spritesheet/roguelikeCity_magenta.png" id="2_ffu48"]
+[ext_resource type="Script" path="res://Scripts/interaction_area.gd" id="3_ays0h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qyt7s"]
+size = Vector2(46, 46)
+
+[node name="FuuseBox" type="Node2D"]
+script = ExtResource("1_presc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ffu48")
+region_enabled = true
+region_rect = Rect2(410, 136, 12, 16)
+
+[node name="InteractionArea" type="Area2D" parent="."]
+collision_layer = 4
+script = ExtResource("3_ays0h")
+action_name = "Interact"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("RectangleShape2D_qyt7s")
+
+[connection signal="body_entered" from="InteractionArea" to="InteractionArea" method="_on_body_entered"]
+[connection signal="body_exited" from="InteractionArea" to="InteractionArea" method="_on_body_exited"]

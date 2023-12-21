@@ -26,7 +26,7 @@ func _fill_object_informations(debug_area: DebuggableArea) -> void:
 	name_label.text =  debug_area.NAME
 	frame.texture = debug_area.frame
 	for debug_function in debug_area.debug_functions_dict:
-		_instantiate_debug_buttons(debug_function, debug_area.debug_functions_dict[debug_function])
+		_instantiate_debug_buttons(debug_function[DEBUG_FUNCTION_FUNCTION_NAME_STRING], debug_function[DEBUG_FUNCTION_ACTIVE_STRING] )
 
 func _instantiate_debug_buttons(debugable_function: String, is_active: bool):
 	var debug_button = debug_button_scene.instantiate()
